@@ -88,6 +88,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         	hab_escritura: in std_logic;
         
         	comp: out std_logic;
+            	led_contrasena: out std_logic_vector(3 downto 0)
         );
     end COMPONENT;
     
