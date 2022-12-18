@@ -10,13 +10,13 @@ ENTITY CajaFuerte IS
     switch : IN std_logic_vector(1 DOWNTO 0);
 
     leds : OUT std_logic_vector(15 DOWNTO 0);
-    led_BGR : OUT std_logic_vector(2 DOWNTO 0)
 );
 END CajaFuerte;
 
 ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
 
 	--DECLARACION DE COMPONENTES
+    
     COMPONENT SYNCHRNZR is
         port (
             CLK : in std_logic;
@@ -25,6 +25,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         );
     end COMPONENT;
 
+	--Detector de flanco de subida
     COMPONENT EDGEDTCTR is
         port (
             CLK : in std_logic;
@@ -33,25 +34,75 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         );
     end COMPONENT;
     
+    --Detector de flanco de bajada REVISAR
+    COMPONENT down_edgedtctr is
+        port (
+            CLK : in std_logic;
+            SYNC_IN : in std_logic;
+            EDGE : out std_logic
+        );
+    end COMPONENT;
+    
     --Componentes de la contraseña
+    
+    --Formador de palabra REVISAR
     COMPONENT FormadorPalabra is
     	port(
+        	boton0: in std_logic;
+    		boton1: in std_logic;
+    		boton2: in std_logic;
+    		boton3: in std_logic;
+    		okey: in std_logic;
+    		clk: in std_logic;
         
+        	contrasena: out std_logic_vector(7 downto 0);
+            led_contrasena: out std_logic_vector(3 downto 0)
         );
     end COMPONENT;
     
+    --Comprobador de palabra REVISAR
     COMPONENT ComprobadorPalabra is
     	port(
+        	borrar: in std_logic;
+    		clk: in std_logic;
+        	contrasena: in std_logic_vector(7 downto 0);
+            
+            comp: in std_logic
+        );
+    end COMPONENT;
+     
+    --Componente login/contraseña REVISAR
+    COMPONENT Login is
+    	port(
+        	boton0: in std_logic;
+   			boton1: in std_logic;
+    		boton2: in std_logic;
+    		boton3: in std_logic;
+    		okey: in std_logic;
+    		clk: in std_logic;
+        	enable: in std_logic;
+        	hab_escritura: in std_logic;
         
+        	comp: out std_logic;
+            led_contrasena: out std_logic_vector(3 downto 0)
         );
     end COMPONENT;
     
-    --Componente de la máquina de estados
     COMPONENT MaquinaEstados is
     	port(
-        
+       		COMP: in std_logic;
+    		CLK: in std_logic; 
+        	RST: in std_logic;
+        	SW1_UP: in std_logic; 
+        	SW1_DOWN: in std_logic;
+        	SW2_UP: in std_logic;
+            
+        	leds: out std_logic_vector(15 downto 0);
+            leds_BGR : out std_logic_vector(2 DOWNTO 0)
         );
     end COMPONENT;
+    
+    --Luces REVISAR INCLUSO SI ES O NO NECESARIO
     
     --SEÑALES
     
@@ -63,10 +114,20 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     --Señal sincro a df de los switches
     SIGNAL sinc_df_sw : std_logic_vector(1 DOWNTO 0);
     --Señal df a maquina de estados de los switches
-    SIGNAL df_me_sw : std_logic_vector(1 DOWNTO 0);
+    SIGNAL df_me_sw : std_logic_vector(2 DOWNTO 0);
+    
+    --Señal login/CP a maquina de estados
+    SIGNAL cont_me : std_logic;
+    
+    --Señal login a luces
+    SIGNAL cont_luces : std_logic_vector(3 DOWNTO 0);
+    
+    --Señal máquina de estados a luces
+    SIGNAL me_luces : std_logic_vector(15 DOWNTO 0);
+    SIGNAL me_luces_BGR : std_logic_vector(2 DOWNTO 0);
     
 begin
-
+	--Genera sincronizadores para los botones
 	B_SINC_GEN: for i in 0 to 4 generate
 
         B_SINC: SYNCHRNZR port map (
@@ -79,6 +140,7 @@ begin
 
     end generate;
     
+    --Genera detectores de flanco para los botones
     B_DF_GEN: for i in 0 to 4 generate
 
         B_DF: EDGEDTCTR port map (
@@ -91,6 +153,7 @@ begin
 
     end generate;
     
+    --Genera sincronizadores para los switches
     SW_SINC_GEN: for i in 0 to 1 generate
 
         SW_SINC: SYNCHRNZR port map (
@@ -103,22 +166,31 @@ begin
 
     end generate;
     
-	B_DF_GEN: for i in 0 to 1 generate
+    --Genera detectores de flanco para los switches
+	SW_DF_GEN: for i in 0 to 1 generate
 
-        B_DF: EDGEDTCTR port map (
+        SW_DF: EDGEDTCTR port map (
         
         CLK => clk,
     	RST_N => rst,
     	SYNC_IN => sinc_df_sw(i),
-    	EDGE => df_me_sw
+    	EDGE => df_me_sw(i)
         );
 
     end generate;
     
+    
+    
     MAQUINA: MaquinaEstados port map(
     
-    
+    	COMP => cont_me,
+    	CLK => clk,
+        RST => rst,
+        SW1_UP => df_me_sw(0),
+        SW1_DOWN => df_me_sw(1),
+        SW2_UP => df_me_sw(2),
+        leds => me_luces,
+        leds_BGR => me_luces_BGR
     );
     
 END BEHAVIORAL;
-
