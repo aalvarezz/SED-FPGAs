@@ -10,6 +10,7 @@ ENTITY CajaFuerte IS
     switch : IN std_logic_vector(1 DOWNTO 0);
 
     leds : OUT std_logic_vector(15 DOWNTO 0);
+    leds_BGR : OUT std_logic_vector(2 DOWNTO 0)
 );
 END CajaFuerte;
 
@@ -17,6 +18,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
 
 	--DECLARACION DE COMPONENTES
     
+    --Sincronizador
     COMPONENT SYNCHRNZR is
         port (
             CLK : in std_logic;
@@ -88,6 +90,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         );
     end COMPONENT;
     
+    --Componente de la máquina de estados REVISAR
     COMPONENT MaquinaEstados is
     	port(
        		COMP: in std_logic;
