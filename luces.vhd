@@ -8,6 +8,7 @@ entity EDGEDTCTR is
 	LEDS_FSM_BRG : in std_logic_vector(2 downto 0);
         LEDS_OUT : out std_logic_vector(15 downto 0);
 	LEDS_OUT_BGR : out std_logic_vector(15 downto 0)
+	LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
     );
 end EDGEDTCTR;
 

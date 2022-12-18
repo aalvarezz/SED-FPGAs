@@ -70,6 +70,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         	contrasena: in std_logic_vector(7 downto 0);
             
             comp: in std_logic
+            	comp: out std_logic
         );
     end COMPONENT;
      
@@ -78,6 +79,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     	port(
         	boton0: in std_logic;
    			boton1: in std_logic;
+   		boton1: in std_logic;
     		boton2: in std_logic;
     		boton3: in std_logic;
     		okey: in std_logic;
@@ -86,7 +88,6 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         	hab_escritura: in std_logic;
         
         	comp: out std_logic;
-            led_contrasena: out std_logic_vector(3 downto 0)
         );
     end COMPONENT;
     
