@@ -8,6 +8,8 @@ entity EDGEDTCTR is
 	LEDS_FSM_BRG : in std_logic_vector(2 downto 0);
         LEDS_OUT : out std_logic_vector(15 downto 0);
 	LEDS_OUT_BGR : out std_logic_vector(15 downto 0)
+	CLK : in std_logic;
+
 	LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
     );
 end EDGEDTCTR;
@@ -15,6 +17,11 @@ end EDGEDTCTR;
 architecture BEHAVIORAL of EDGEDTCTR is
 
 begin
+
+process(CLK)
+
+begin
+
 	asignacion: for k in 0 to 15 loop
 		if k<4 then
 			LEDS_OUT(k) <= LEDS_LOGIN(k) or LEDS_FSM(k);
@@ -23,5 +30,11 @@ begin
 		end if;
 	end loop asignacion;
 
+	if LEDS_FSM = '0' then
+
+	end if;
+
 	LEDS_OUT_BGR <= LEDS_FSM_BRG;
+
+end process;
 end BEHAVIORAL;
