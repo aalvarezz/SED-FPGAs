@@ -1,18 +1,19 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity EDGEDTCTR is
+entity LUCES is
     port (
-        LEDS_LOGIN : in std_logic_vector(3 downto 0);
-	LEDS_FSM : in std_logic_vector(15 downto 0);
-	LEDS_FSM_BRG : in std_logic_vector(2 downto 0);
-        LEDS_OUT : out std_logic_vector(15 downto 0);
-	LEDS_OUT_BGR : out std_logic_vector(15 downto 0)
 	CLK : in std_logic;
+	LEDS_FP : in std_logic_vector(3 downto 0);
+	LEDS_FSM : in std_logic;
+	LEDS_CP_BRG_CORRECTO : in std_logic;
+	LEDS_CP_BRG_INCORRECTO : in std_logic;
 
+        LEDS_OUT : out std_logic_vector(15 downto 0);
 	LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
+	
     );
-end EDGEDTCTR;
+end LUCES;
 
 architecture BEHAVIORAL of EDGEDTCTR is
 
@@ -22,19 +23,31 @@ process(CLK)
 
 begin
 
-	asignacion: for k in 0 to 15 loop
-		if k<4 then
-			LEDS_OUT(k) <= LEDS_LOGIN(k) or LEDS_FSM(k);
-		else
-			LEDS_OUT(k) <= LEDS_FSM(k);
-		end if;
-	end loop asignacion;
-
+if rising_edge(CLK) then
 	if LEDS_FSM = '0' then
+		asignacion: for k in 0 to 15 loop
+			LEDS_OUT(k) <= 0;
+		end loop asignacion;
 
+		asignacion: for k in 0 to 3 loop
+			LEDS_OUT(k) <= LEDS_FP(k);
+		end loop asignacion;
+		
+		if LEDS_CP_BRG_CORRECTO = '1' then //RGB verde
+			LEDS_OUT_BGR(0) <= '0';
+			LEDS_OUT_BGR(1) <= '1';
+			LEDS_OUT_BGR(2) <= '0';
+		elsif LEDS_CP_BRG_INCORRECTO = '1' then //RGB rojo
+			LEDS_OUT_BGR(0) <= '0';
+			LEDS_OUT_BGR(1) <= '0';
+			LEDS_OUT_BGR(2) <= '1';
+		end if;
+	else //Aquí iría la funcionalidad con CLK
+		asignacion: for k in 0 to 15 loop
+			LEDS_OUT(k) <= 1;
+		end loop asignacion;
 	end if;
-
-	LEDS_OUT_BGR <= LEDS_FSM_BRG;
+end if;
 
 end process;
 end BEHAVIORAL;

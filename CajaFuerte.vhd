@@ -50,15 +50,15 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     --Formador de palabra REVISAR
     COMPONENT FormadorPalabra is
     	port(
-        	boton0: in std_logic;
-    		boton1: in std_logic;
+        	boton1: in std_logic;
     		boton2: in std_logic;
     		boton3: in std_logic;
+    		boton4: in std_logic;
     		okey: in std_logic;
     		clk: in std_logic;
         
         	contrasena: out std_logic_vector(7 downto 0);
-            led_contrasena: out std_logic_vector(3 downto 0)
+            	led_contrasena: out std_logic_vector(3 downto 0)
         );
     end COMPONENT;
     
@@ -69,26 +69,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     		clk: in std_logic;
         	contrasena: in std_logic_vector(7 downto 0);
             
-            comp: in std_logic
             	comp: out std_logic
-        );
-    end COMPONENT;
-     
-    --Componente login/contraseña REVISAR
-    COMPONENT Login is
-    	port(
-        	boton0: in std_logic;
-   			boton1: in std_logic;
-   		boton1: in std_logic;
-    		boton2: in std_logic;
-    		boton3: in std_logic;
-    		okey: in std_logic;
-    		clk: in std_logic;
-        	enable: in std_logic;
-        	hab_escritura: in std_logic;
-        
-        	comp: out std_logic;
-            	led_contrasena: out std_logic_vector(3 downto 0)
         );
     end COMPONENT;
     
@@ -108,7 +89,19 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     end COMPONENT;
     
     --Luces REVISAR INCLUSO SI ES O NO NECESARIO
-    
+    COMPONENT LUCES is
+    	port (
+		CLK : in std_logic;
+		LEDS_FP : in std_logic_vector(3 downto 0);
+		LEDS_FSM : in std_logic;
+		LEDS_CP_BRG_CORRECTO : in std_logic;
+		LEDS_CP_BRG_INCORRECTO : in std_logic;
+
+        	LEDS_OUT : out std_logic_vector(15 downto 0);
+		LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
+	
+    	);
+    end COMPONENT;
     --SEÑALES
     
     --Señal sincro a df de los botones
