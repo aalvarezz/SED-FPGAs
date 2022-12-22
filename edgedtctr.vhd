@@ -21,7 +21,6 @@ begin
 		elsif rising_edge(CLK) then
 			sreg <= sreg(1 downto 0) & SYNC_IN;
 		end if;
-		end process;
 		with sreg select
 			EDGE <= '1' when "011",
 			'0' when others;
@@ -36,4 +35,5 @@ begin
 			EDGE <= '1' when "100",
 			'0' when others;
      end if
+end process;
 end BEHAVIORAL;
