@@ -32,36 +32,37 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity comprobadorpalabra is
-    port(
-    reset   : in std_logic;
-    clk     : in std_logic;
-    enable  : in std_logic;
-    word    : in std_logic_vector(7 downto 0);
-    correct : out std_logic
+    port (
+        RST     : in std_logic;
+        CLK       : in std_logic;
+        ENABLE    : in std_logic;
+        PALABRA   : in std_logic_vector(7 downto 0);
+        LEDS      : out std_logic_vector(1 downto 0);
+        CORRECT   : out std_logic
     );
 end comprobadorpalabra;
 
 architecture Behavioral of comprobadorpalabra is
 begin
-    comparador : process(reset, clk, enable, word)
+    comparador : process(RST, CLK, ENABLE, PALABRA)
         variable password : std_logic_vector(7 downto 0);
     begin
-        if reset = '0' then
+        if RST = '0' then
             password := "00000000";
-            correct <= '0';
+            CORRECT <= '0';
         end if;
         
-        if enable = '1' then --Registro
-            correct <= '1';
-            password := word; --Se almacena la palabra introducida como contraseña
+        if ENABLE = '1' then --Registro
+            CORRECT <= '1';
+            password := PALABRA; --Se almacena la palabra introducida como contraseña
         else
-            correct <= '0';
+            CORRECT <= '0';
         end if;
         
-        if enable = '0' and password = word then --Log in
-            correct <= '1';
+        if ENABLE = '0' and password = PALABRA then --Log in
+            CORRECT <= '1';
         else
-            correct <= '0';
+            CORRECT <= '0';
         end if;
     end process;
 end Behavioral;
