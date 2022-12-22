@@ -6,8 +6,9 @@ entity LUCES is
 	CLK : in std_logic;
 	LEDS_FP : in std_logic_vector(3 downto 0);
 	LEDS_FSM : in std_logic;
-	LEDS_CP_BGR_CORRECTO : in std_logic;
-	LEDS_CP_BGR_INCORRECTO : in std_logic;
+	--LEDS_CP_BGR_CORRECTO : in std_logic;
+	--LEDS_CP_BGR_INCORRECTO : in std_logic;
+	LEDS_CP : in std_logic_vector(1 downto 0);
 
         LEDS_OUT : out std_logic_vector(15 downto 0);
 	LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
@@ -19,7 +20,7 @@ architecture BEHAVIORAL of EDGEDTCTR is
 
 begin
 
-process(CLK, LEDS_FP, LEDS_FSM, LEDS_CP_BRG_CORRECTO, LEDS_CP_BRG_INCORRECTO)
+process(CLK, LEDS_FP, LEDS_FSM, LEDS_CP)
 
 begin
 
@@ -33,11 +34,11 @@ if rising_edge(CLK) then
 			LEDS_OUT(k) <= LEDS_FP(k);
 		end loop asignacion;
 		
-		if LEDS_CP_BRG_CORRECTO = '1' then //RGB verde
+		if LEDS_CP(0) = '1' then //RGB verde
 			LEDS_OUT_BGR(0) <= '0';
 			LEDS_OUT_BGR(1) <= '1';
 			LEDS_OUT_BGR(2) <= '0';
-		elsif LEDS_CP_BRG_INCORRECTO = '1' then //RGB rojo
+		elsif LEDS_CP(1) = '1' then //RGB rojo
 			LEDS_OUT_BGR(0) <= '0';
 			LEDS_OUT_BGR(1) <= '0';
 			LEDS_OUT_BGR(2) <= '1';

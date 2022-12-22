@@ -22,6 +22,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     COMPONENT SYNCHRNZR is
         port (
             CLK : in std_logic;
+		RST_N: in std_logic;
             ASYNC_IN : in std_logic;
             SYNC_OUT : out std_logic
         );
@@ -31,6 +32,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     COMPONENT EDGEDTCTR is
         port (
             CLK : in std_logic;
+		RST_N: in std_logic;
             SYNC_IN : in std_logic;
             EDGE : out std_logic
         );
@@ -40,6 +42,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     COMPONENT down_edgedtctr is
         port (
             CLK : in std_logic;
+		RST_N: in std_logic;
             SYNC_IN : in std_logic;
             EDGE : out std_logic
         );
@@ -107,8 +110,8 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     end COMPONENT;
     --SEÑALES
 --Señales salida leds
-SIGNAL luces_leds : std_logic_vector(15 DOWNTO 0);//Posiblemente no hace falta, se conecta sin señal a las variables de salida
-SIGNAL luces_BGR : std_logic_vector(2 DOWNTO 0);//Posiblemente no hace falta
+--SIGNAL luces_leds : std_logic_vector(15 DOWNTO 0);--Posiblemente no hace falta, se conecta sin señal a las variables de salida
+--SIGNAL luces_BGR : std_logic_vector(2 DOWNTO 0);--Posiblemente no hace falta
 
 --Señales llegada a LUCES
 SIGNAL fsm_luces : std_logic;
@@ -126,23 +129,23 @@ SIGNAL fsm_cp : std_logic;
 SIGNAL fp_cp : std_logic_vector(7 DOWNTO 0);
 
 --Señales llegada a FP
-SIGNAL df_cont_b : std_logic_vector(4 DOWNTO 0);
+SIGNAL df_fp : std_logic_vector(4 DOWNTO 0);
 SIGNAL fsm_fp : std_logic;
 
 --Señales llegada a DF de botones
 SIGNAL sinc_df_b : std_logic_vector(4 DOWNTO 0);
 
 --Señales llegada a SINC de botones
-SIGNAL botones_sinc : std_logic_vector(4 DOWNTO 0);//Posiblemente no hace falta
+--SIGNAL botones_sinc : std_logic_vector(4 DOWNTO 0);--Posiblemente no hace falta
 
 --Señales llegada a DF de switches
 SIGNAL sinc_df_sw : std_logic_vector(1 DOWNTO 0);
 
 --Señales llegada a DF_N de switches
-SIGNAL sinc_dfn_sw : std_logic;
+SIGNAL sinc_dfn_sw : std_logic;--Es la misma que la de arriba, usar esa
 
 --Señales llegada a SINC de switches
-SIGNAL switches_sinc : std_logic_vector(1 DOWNTO 0);//Posiblemente no hace falta
+--SIGNAL switches_sinc : std_logic_vector(1 DOWNTO 0);--Posiblemente no hace falta
     
 begin
 	--Genera sincronizadores para los botones
@@ -166,7 +169,7 @@ begin
         CLK => clk,
     	RST_N => rst,
     	SYNC_IN => sinc_df_b(i),
-    	EDGE => df_cont_b(i)
+    	EDGE => df_fp(i)
         );
 
     end generate;
@@ -192,14 +195,37 @@ begin
         CLK => clk,
     	RST_N => rst,
     	SYNC_IN => sinc_df_sw(i),
-    	EDGE => df_me_sw(i)
+    	EDGE => df_fsm_sw(i)
         );
 
     end generate;
     
+df_sw_1: EDGEDTCTR port map (
+        
+        CLK => clk,
+    	RST_N => rst,
+    	SYNC_IN => sinc_df_sw(0),
+    	EDGE => df1_fsm
+);
+
+df_sw_2: EDGEDTCTR port map (
+        
+        CLK => clk,
+    	RST_N => rst,
+    	SYNC_IN => sinc_df_sw(1),
+    	EDGE => df2_fsm
+);
+
+dfb_sw_1: down_edgedtctr port map (
+        
+        CLK => clk,
+    	RST_N => rst,
+    	SYNC_IN => sinc_df_sw(0),
+    	EDGE => df2_fsm
+);
     
-    
-    MAQUINA: MaquinaEstados port map(
+    --Hecho, hay que actualizar
+    MAQUINA: fsm port map(
     
     	COMP => cont_me,
     	CLK => clk,
