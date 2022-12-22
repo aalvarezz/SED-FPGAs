@@ -84,7 +84,7 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         	SW2_UP: in std_logic;
             
         	leds: out std_logic_vector(15 downto 0);
-            leds_BGR : out std_logic_vector(2 DOWNTO 0)
+            	leds_BGR : out std_logic_vector(2 DOWNTO 0)
         );
     end COMPONENT;
     

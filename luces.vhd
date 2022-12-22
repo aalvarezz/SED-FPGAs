@@ -19,7 +19,7 @@ architecture BEHAVIORAL of EDGEDTCTR is
 
 begin
 
-process(CLK)
+process(CLK, LEDS_FP, LEDS_FSM, LEDS_CP_BRG_CORRECTO, LEDS_CP_BRG_INCORRECTO)
 
 begin
 
