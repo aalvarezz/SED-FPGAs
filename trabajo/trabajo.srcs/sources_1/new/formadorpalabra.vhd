@@ -25,13 +25,13 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.ALL;
 
 entity formador_palabra is
-port(
-    CLK         : in std_logic; --señal de reloj
-    BOTONES     : in std_logic_vector(4 downto 0); --botones con los que introducir la contraseña
-    ENABLE_FP   : in std_logic; --habilita la escritura de la contraseña
-    PALABRA     : out std_logic_vector(7 downto 0);
-    LED_PALABRA : out std_logic_vector(3 downto 0) --leds que se encienden para indicar el numero introducido
-    );
+    port(
+        CLK         : in std_logic; --señal de reloj
+        BOTONES     : in std_logic_vector(4 downto 0); --botones con los que introducir la contraseña
+        ENABLE_FP   : in std_logic; --habilita la escritura de la contraseña
+        PALABRA     : out std_logic_vector(7 downto 0);
+        LED_PALABRA : out std_logic_vector(3 downto 0) --leds que se encienden para indicar el numero introducido
+        );
 end formador_palabra;
 
 architecture behavioral of formador_palabra is 
@@ -55,22 +55,22 @@ begin
         when S0 => --ningun numero introducido
         	PALABRA <= (OTHERS => '0');--contraseña a cero
             LED_PALABRA <= (OTHERS => '0');--leds apagados
-        	if rising_edge(BOTONES(0)) then 
+        	if BOTONES(0) = '1' then 
             	comodin(0) := '0';--sirve para actualizar correctamente la contraseña en funcion del boton elegido
                 comodin(1) := '0';
                 LED_PALABRA<="0001";--leds correspondientes al boton
             	next_state <= S1; --estado sucesor
-             elsif rising_edge(BOTONES(1)) then 
-            	comodin(0) := '1';
+             elsif BOTONES(1) = '1' then 
+           	comodin(0) := '1';
                 comodin(1) := '0';
                 LED_PALABRA<="0011";
             	next_state <= S1;
-             elsif rising_edge(BOTONES(2)) then 
+             elsif BOTONES(2) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '1';
                 LED_PALABRA<="0111";
             	next_state <= S1;
-             elsif rising_edge(BOTONES(3)) then 
+             elsif BOTONES(3) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '1';
                 LED_PALABRA<="1111";
@@ -79,22 +79,22 @@ begin
   		when S1 => --1 digito introducido
         	PALABRA(0) <= comodin(0);
             PALABRA(1) <= comodin(1);
-        	if rising_edge(BOTONES(0)) then 
+        	if BOTONES(0) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '0';
                 LED_PALABRA<="0001";
             	next_state <= S2; 
-             elsif rising_edge(BOTONES(1)) then 
+             elsif BOTONES(1) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '0';
                 LED_PALABRA<="0011";
             	next_state <= S2;
-             elsif rising_edge(BOTONES(2)) then 
+             elsif BOTONES(2) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '1';
                 LED_PALABRA<="0111";
             	next_state <= S2;
-             elsif rising_edge(BOTONES(3)) then 
+             elsif BOTONES(3) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '1';
                 LED_PALABRA<="1111";
@@ -103,22 +103,22 @@ begin
         when S2 => --2 digitos introducidos
         	PALABRA(2) <= comodin(0);
             PALABRA(3) <= comodin(1);
-        	if rising_edge(BOTONES(0)) then 
+        	if BOTONES(0) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '0';
                 LED_PALABRA<="0001";
             	next_state <= S3; 
-             elsif rising_edge(BOTONES(1)) then 
+             elsif BOTONES(1) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '0';
                 LED_PALABRA<="0011";
             	next_state <= S3;
-             elsif rising_edge(BOTONES(2)) then 
+             elsif BOTONES(2) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '1';
                 LED_PALABRA<="0111";
             	next_state <= S3;
-             elsif rising_edge(BOTONES(3)) then 
+             elsif BOTONES(3) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '1';
                 LED_PALABRA<="1111";
@@ -127,22 +127,22 @@ begin
         when S3 => --3 digitos introducidos
         	PALABRA(4) <= comodin(0);
             PALABRA(5) <= comodin(1);
-        	if rising_edge(BOTONES(0)) then 
+        	if BOTONES(0) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '0';
                 LED_PALABRA<="0001";
             	next_state <= S4; 
-             elsif rising_edge(BOTONES(1)) then 
+             elsif BOTONES(1) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '0';
                 LED_PALABRA<="0011";
             	next_state <= S4;
-             elsif rising_edge(BOTONES(2)) then 
+             elsif BOTONES(2) = '1' then 
             	comodin(0) := '0';
                 comodin(1) := '1';
                 LED_PALABRA<="0111";
             	next_state <= S4;
-             elsif rising_edge(BOTONES(3)) then 
+             elsif BOTONES(3) = '1' then 
             	comodin(0) := '1';
                 comodin(1) := '1';
                 LED_PALABRA<="1111";
@@ -151,7 +151,7 @@ begin
         when S4 => --4 digitos introducidos
  			PALABRA(6) <= comodin(0);
             PALABRA(7) <= comodin(1);
-            if rising_edge(BOTONES(4)) then
+            if BOTONES(4) = '1' then
             	LED_PALABRA<="0000";
             	next_state <= S0;
              end if;

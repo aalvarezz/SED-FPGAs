@@ -92,7 +92,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
             CORRECT   : in std_logic;
             SWITCH1   : in std_logic;
             SWITCH2   : in std_logic;
-            SWITCH_N  : in std_logic;
+            SWITCH1_N  : in std_logic;
             ENABLE_FP : out std_logic;
             ENABLE_CP : out std_logic;
             LED       : out std_logic
@@ -103,7 +103,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     COMPONENT luces is
     	port (
             CLK          : in std_logic;
-            LED_FP       : in std_logic_vector(3 downto 0);
+            LEDS_FP      : in std_logic_vector(3 downto 0);
             LEDS_FSM     : in std_logic;
             LEDS_CP      : in std_logic_vector(1 downto 0);
             LEDS_OUT     : out std_logic_vector(15 downto 0);
@@ -247,7 +247,7 @@ begin
         CORRECT   => cp_fsm,
         SWITCH1   => df1_fsm,
         SWITCH2   => df2_fsm,
-        SWITCH_N  => dfb_fsm,
+        SWITCH1_N  => dfb_fsm,
         ENABLE_FP => fsm_fp,
         ENABLE_CP => fsm_cp,
         LED       => fsm_luces
@@ -257,7 +257,7 @@ begin
     -- LUCES
     COMPONENTE_LUCES : luces port map (
         CLK          => CLK,
-        LED_FP       => fp_luces,
+        LEDS_FP      => fp_luces,
         LEDS_FSM     => fsm_luces,
         LEDS_CP      => cp_luces,
         LEDS_OUT     => LEDS,
