@@ -3,6 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity luces is
     port (
+    RST          : in std_logic;
 	CLK          : in std_logic;
 	LEDS_FP      : in std_logic_vector(3 downto 0);
 	LEDS_FSM     : in std_logic;
@@ -13,21 +14,28 @@ entity luces is
 end luces;
 
 architecture BEHAVIORAL of luces is
-    
 begin
 
-    process(CLK, LEDS_FP, LEDS_FSM, LEDS_CP)
+    process(RST, CLK)
     begin
-    
+        if RST = '0' then
+            ASIGNACION0 : for k in 0 to 15 loop
+                LEDS_OUT(k) <= '0';
+            end loop ASIGNACION0;
+            ASIGNACION1 : for k in 0 to 2 loop
+                LEDS_OUT_BGR(k) <= '0';
+            end loop ASIGNACION1;
+        end if;
+        
         if rising_edge(CLK) then
             if LEDS_FSM = '0' then
-                ASIGNACION : for k in 0 to 15 loop
+                ASIGNACION2 : for k in 0 to 15 loop
                     LEDS_OUT(k) <= '0';
-                end loop ASIGNACION;
+                end loop ASIGNACION2;
         
-                ASIGNACION1 : for k in 0 to 3 loop
+                ASIGNACION3 : for k in 0 to 3 loop
                     LEDS_OUT(k) <= LEDS_FP(k);
-                end loop ASIGNACION1;
+                end loop ASIGNACION3;
                 
                 if LEDS_CP(0) = '1' then --RGB verde
                     LEDS_OUT_BGR(0) <= '0';
@@ -38,10 +46,10 @@ begin
                     LEDS_OUT_BGR(1) <= '0';
                     LEDS_OUT_BGR(2) <= '1';
                 end if;
-            else --Aquí iría la funcionalidad con CLK
-                ASIGNACION2 : for j in 0 to 15 loop
+            elsif LEDS_FSM = '1' then --Aquí iría la funcionalidad con CLK
+                ASIGNACION4 : for j in 0 to 15 loop
                     LEDS_OUT(j) <= '1';
-                end loop ASIGNACION2;
+                end loop ASIGNACION4;
             end if;
         end if;
     

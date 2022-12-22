@@ -25,7 +25,7 @@ use IEEE.std_logic_1164.all;
 ENTITY top_entity IS
     PORT ( 
         RST      : IN std_logic;
-        BOTON    : IN std_logic_vector(4 DOWNTO 0);
+        BOTONES  : IN std_logic_vector(4 DOWNTO 0);
         CLK      : IN std_logic;
         SWITCH   : IN std_logic_vector(1 DOWNTO 0);
         LEDS     : OUT std_logic_vector(15 DOWNTO 0);
@@ -102,12 +102,13 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     --Luces REVISAR INCLUSO SI ES O NO NECESARIO
     COMPONENT luces is
     	port (
-            CLK          : in std_logic;
-            LEDS_FP      : in std_logic_vector(3 downto 0);
-            LEDS_FSM     : in std_logic;
-            LEDS_CP      : in std_logic_vector(1 downto 0);
-            LEDS_OUT     : out std_logic_vector(15 downto 0);
-            LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
+    	   RST          : in std_logic;
+           CLK          : in std_logic;
+           LEDS_FP      : in std_logic_vector(3 downto 0);
+           LEDS_FSM     : in std_logic;
+           LEDS_CP      : in std_logic_vector(1 downto 0);
+           LEDS_OUT     : out std_logic_vector(15 downto 0);
+           LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
     	);
     end COMPONENT;
     
@@ -150,7 +151,7 @@ begin
         B_SYNC: synchrnzr port map (
            RST_N    => RST,
            CLK      => CLK,
-    	   ASYNC_IN => boton(i),
+    	   ASYNC_IN => BOTONES(i),
     	   SYNC_OUT => sinc_df_b(i)
         );
 
@@ -175,7 +176,7 @@ begin
     SW_SYNC_1 : synchrnzr port map (
     	RST_N    => RST,
         CLK      => CLK,
-        ASYNC_IN => switch(0),
+        ASYNC_IN => SWITCH(0),
         SYNC_OUT => sinc_df_sw1
     );
 
@@ -184,7 +185,7 @@ begin
     SW_SYNC_2 : synchrnzr port map (
     	RST_N    => RST,
         CLK      => CLK,
-        ASYNC_IN => switch(1),
+        ASYNC_IN => SWITCH(1),
         SYNC_OUT => sinc_df_sw2
     );
     
@@ -247,7 +248,7 @@ begin
         CORRECT   => cp_fsm,
         SWITCH1   => df1_fsm,
         SWITCH2   => df2_fsm,
-        SWITCH1_N  => dfb_fsm,
+        SWITCH1_N => dfb_fsm,
         ENABLE_FP => fsm_fp,
         ENABLE_CP => fsm_cp,
         LED       => fsm_luces
@@ -256,6 +257,7 @@ begin
     
     -- LUCES
     COMPONENTE_LUCES : luces port map (
+        RST       => RST,
         CLK          => CLK,
         LEDS_FP      => fp_luces,
         LEDS_FSM     => fsm_luces,

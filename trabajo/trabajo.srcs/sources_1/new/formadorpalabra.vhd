@@ -37,16 +37,16 @@ end formador_palabra;
 architecture behavioral of formador_palabra is 
 	type STATES is (S0, S1, S2, S3, S4); 
     signal current_state: STATES := S0; 
-    signal next_state: STATES; 
+    signal next_state : STATES; 
     
 begin
-	state_register: process (CLK) 
+	state_register : process (CLK) 
 	begin
       	current_state <= next_state;--lleva a cabo los cambios de estado
     end process;
     
-    nextstate_decod: process (BOTONES, ENABLE_FP, current_state) 
-    variable comodin: std_logic_vector(1 downto 0);
+    nextstate_decod : process (BOTONES, ENABLE_FP, current_state) 
+    variable comodin : std_logic_vector(1 downto 0);
     begin 
     	next_state <= current_state; 
     if ENABLE_FP = '1' then--si esta habilitado se puede escribir la contraseña

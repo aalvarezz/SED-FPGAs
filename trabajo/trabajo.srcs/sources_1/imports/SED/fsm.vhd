@@ -59,7 +59,7 @@ begin
         end if;
     end process;
  
-    nextstate_decod : process (current_state, SWITCH1,SWITCH2, SWITCH1_N, CORRECT)
+    nextstate_decod : process (current_state, SWITCH1, SWITCH2, SWITCH1_N, CORRECT)
     begin
         next_state <= current_state;
         case current_state is
@@ -92,18 +92,23 @@ begin
             when S0 =>
                 ENABLE_CP <= '1'; --Enable para habilitar la función de registro
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
+                LED       <= '0';
             when S1 =>
                 ENABLE_CP <= '0'; --Se desactiva el Enable para habilitar la función de log in (PROVISIONAL)
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
-            when S2 =>
-                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
-            when S3 =>
-                LED    <= '1'; --Funcion provisional
-                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
-            when others =>
                 LED       <= '0';
-                ENABLE_FP <= '0';
+            when S2 =>
                 ENABLE_CP <= '0';
+                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
+                LED       <= '0';
+            when S3 =>
+                ENABLE_CP <= '0';
+                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
+                LED       <= '1'; --Funcion provisional
+            when others =>
+                ENABLE_CP <= '0';
+                ENABLE_FP <= '0';
+                LED       <= '0';
         end case;
     end process;
 end behavioral;
