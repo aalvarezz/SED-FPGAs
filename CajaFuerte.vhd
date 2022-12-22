@@ -143,27 +143,6 @@ SIGNAL sinc_dfn_sw : std_logic;
 
 --Señales llegada a SINC de switches
 SIGNAL switches_sinc : std_logic_vector(1 DOWNTO 0);//Posiblemente no hace falta
-
-
-    --Señal sincro a df de los botones
-    SIGNAL sinc_df_b : std_logic_vector(4 DOWNTO 0);
-    --Señal df a contraseña de los botones
-    SIGNAL df_cont_b : std_logic_vector(4 DOWNTO 0);
-    
-    --Señal sincro a df de los switches
-    SIGNAL sinc_df_sw : std_logic_vector(1 DOWNTO 0);
-    --Señal df a maquina de estados de los switches
-    SIGNAL df_me_sw : std_logic_vector(2 DOWNTO 0);
-    
-    --Señal login/CP a maquina de estados
-    SIGNAL cont_me : std_logic;
-    
-    --Señal login a luces
-    SIGNAL cont_luces : std_logic_vector(3 DOWNTO 0);
-    
-    --Señal máquina de estados a luces
-    SIGNAL me_luces : std_logic_vector(15 DOWNTO 0);
-    SIGNAL me_luces_BGR : std_logic_vector(2 DOWNTO 0);
     
 begin
 	--Genera sincronizadores para los botones
