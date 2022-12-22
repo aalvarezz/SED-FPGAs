@@ -38,16 +38,6 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
         );
     end COMPONENT;
     
-    --Detector de flanco de bajada REVISAR
-    COMPONENT down_edgedtctr is
-        port (
-            CLK : in std_logic;
-		RST_N: in std_logic;
-            SYNC_IN : in std_logic;
-            EDGE : out std_logic
-        );
-    end COMPONENT;
-    
     --Componentes de la contraseña
     
     --Formador de palabra REVISAR

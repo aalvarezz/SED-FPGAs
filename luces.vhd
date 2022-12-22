@@ -27,7 +27,7 @@ begin
 if rising_edge(CLK) then
 	if LEDS_FSM = '0' then
 		asignacion: for k in 0 to 15 loop
-			LEDS_OUT(k) <= 0;
+			LEDS_OUT(k) <= '0';
 		end loop asignacion;
 
 		asignacion: for k in 0 to 3 loop
@@ -45,7 +45,7 @@ if rising_edge(CLK) then
 		end if;
 	else //Aquí iría la funcionalidad con CLK
 		asignacion: for k in 0 to 15 loop
-			LEDS_OUT(k) <= 1;
+			LEDS_OUT(k) <= '1';
 		end loop asignacion;
 	end if;
 end if;
