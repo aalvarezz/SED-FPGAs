@@ -65,11 +65,14 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     --Comprobador de palabra REVISAR
     COMPONENT ComprobadorPalabra is
     	port(
-        	borrar: in std_logic;
-    		clk: in std_logic;
-        	contrasena: in std_logic_vector(7 downto 0);
-            
-            	comp: out std_logic
+        	reset   : in std_logic;
+    		clk     : in std_logic;
+   		enable  : in std_logic;
+    		word    : in std_logic_vector(7 downto 0);
+
+		led_verde : out std_logic;
+		led_rojo : out std_logic;
+    		correct : out std_logic
         );
     end COMPONENT;
     
@@ -103,7 +106,45 @@ ARCHITECTURE BEHAVIORAL OF CajaFuerte IS
     	);
     end COMPONENT;
     --SEÑALES
-    
+--Señales salida leds
+SIGNAL luces_leds : std_logic_vector(15 DOWNTO 0);//Posiblemente no hace falta, se conecta sin señal a las variables de salida
+SIGNAL luces_BGR : std_logic_vector(2 DOWNTO 0);//Posiblemente no hace falta
+
+--Señales llegada a LUCES
+SIGNAL fsm_luces : std_logic;
+SIGNAL fp_luces : std_logic_vector(3 DOWNTO 0);
+SIGNAL cp_luces : std_logic_vector(1 DOWNTO 0);
+
+--Señales llegada a FSM
+SIGNAL cp_fsm : std_logic;
+SIGNAL df1_fsm : std_logic;
+SIGNAL df2_fsm : std_logic;
+SIGNAL dfb_fsm : std_logic;
+
+--Señales llegada a CP
+SIGNAL fsm_cp : std_logic;
+SIGNAL fp_cp : std_logic_vector(7 DOWNTO 0);
+
+--Señales llegada a FP
+SIGNAL df_cont_b : std_logic_vector(4 DOWNTO 0);
+SIGNAL fsm_fp : std_logic;
+
+--Señales llegada a DF de botones
+SIGNAL sinc_df_b : std_logic_vector(4 DOWNTO 0);
+
+--Señales llegada a SINC de botones
+SIGNAL botones_sinc : std_logic_vector(4 DOWNTO 0);//Posiblemente no hace falta
+
+--Señales llegada a DF de switches
+SIGNAL sinc_df_sw : std_logic_vector(1 DOWNTO 0);
+
+--Señales llegada a DF_N de switches
+SIGNAL sinc_dfn_sw : std_logic;
+
+--Señales llegada a SINC de switches
+SIGNAL switches_sinc : std_logic_vector(1 DOWNTO 0);//Posiblemente no hace falta
+
+
     --Señal sincro a df de los botones
     SIGNAL sinc_df_b : std_logic_vector(4 DOWNTO 0);
     --Señal df a contraseña de los botones

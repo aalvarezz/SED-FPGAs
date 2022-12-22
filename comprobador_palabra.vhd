@@ -9,7 +9,7 @@ entity comprobador_palabra is
     word    : in std_logic_vector(7 downto 0);
 
 	led_verde : out std_logic;
-	led_verde : out std_logic;
+	led_rojo : out std_logic;
     correct : out std_logic
     );
 end comprobador_palabra;
@@ -22,19 +22,26 @@ begin
         if reset = '0' then
             password := "00000000";
             correct <= '0';
+		led_verde <= '0';
+		led_rojo <= '0';
         end if;
         
         if enable = '1' then --Registro
             correct <= '1';
             password := word; --Se almacena la palabra introducida como contraseña
+		led_verde <= '1';
         else
             correct <= '0';
+		led_verde <= '0';
+		led_rojo <= '0';
         end if;
         
         if enable = '0' and password = word then --Log in
             correct <= '1';
+		led_verde <= '1';
         else
             correct <= '0';
+		led_rojo <= '1';
         end if;
     end process;
 end Behavioral;

@@ -6,8 +6,8 @@ entity LUCES is
 	CLK : in std_logic;
 	LEDS_FP : in std_logic_vector(3 downto 0);
 	LEDS_FSM : in std_logic;
-	LEDS_CP_BRG_CORRECTO : in std_logic;
-	LEDS_CP_BRG_INCORRECTO : in std_logic;
+	LEDS_CP_BGR_CORRECTO : in std_logic;
+	LEDS_CP_BGR_INCORRECTO : in std_logic;
 
         LEDS_OUT : out std_logic_vector(15 downto 0);
 	LEDS_OUT_BGR : out std_logic_vector(2 downto 0)
