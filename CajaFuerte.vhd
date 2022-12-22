@@ -221,7 +221,7 @@ dfb_sw_1: down_edgedtctr port map (
         CLK => clk,
     	RST_N => rst,
     	SYNC_IN => sinc_df_sw(0),
-    	EDGE => df2_fsm
+    	EDGE => df1_fsm
 );
     
     --Hecho, hay que actualizar
