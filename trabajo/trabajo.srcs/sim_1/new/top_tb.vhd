@@ -32,12 +32,151 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top_tb is
---  Port ( );
 end top_tb;
 
 architecture Behavioral of top_tb is
-
+    component top
+        port(
+            RST      : in std_logic;
+            CLK      : in std_logic;
+            BOTONES  : in std_logic_vector(4 DOWNTO 0);
+            SWITCH   : in std_logic_vector(1 DOWNTO 0);
+            LEDS     : out std_logic_vector(15 DOWNTO 0);
+            LEDS_BGR : out std_logic_vector(2 DOWNTO 0)
+        );
+    end component;
+    
+    signal rst      : std_logic;
+    signal clk      : std_logic;
+    signal botones  : std_logic_vector(4 DOWNTO 0);
+    signal switch   : std_logic_vector(1 DOWNTO 0);
+    signal leds     : std_logic_vector(15 DOWNTO 0);
+    signal leds_bgr : std_logic_vector(2 DOWNTO 0);
+    constant k      : time := 10 ns;
+    
 begin
 
+    uut : top port map(
+        RST      => rst,
+        CLK      => clk,
+        BOTONES  => botones,
+        SWITCH   => switch,
+        LEDS     => leds,
+        LEDS_BGR => leds_bgr
+        );
 
+    clock: process
+    begin 
+        clk<='0';
+        wait for k/10;
+        clk<='1';
+        wait for k/10;
+    end process;
+
+    stimuli: process
+    begin
+        
+        --REGISTRO
+        --Primer dígito	
+     	BOTONES(0) <= '1';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';         	
+     	wait for k;
+     	
+     	--Segundo dígito
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '1';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';      	
+     	wait for k;
+     	
+     	--Tercer dígito
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '1';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';      	
+     	wait for k;
+     	
+     	--Cuarto dígito
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '1';
+     	BOTONES(4) <= '0';      	
+     	wait for k;
+        
+     	--Confirmación
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '1';      	
+     	wait for 4*k;
+     	
+     	--Pausa
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';      	
+     	wait for 4*k;
+        
+        --LOGIN
+        --Primer dígito	
+     	BOTONES(0) <= '1';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';         	
+     	wait for k;
+     	
+     	--Segundo dígito
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '1';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';      	
+     	wait for k;
+     	
+     	--Tercer dígito
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '1';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';      	
+     	wait for k;
+     	
+     	--Cuarto dígito
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '1';
+     	BOTONES(4) <= '0';      	
+     	wait for k;
+        
+     	--Confirmación
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '1';      	
+     	wait for 4*k;
+        
+     	--Pausa
+     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';      	
+     	wait for 4*k;
+        
+        --ELECCIÓN 1
+        SWITCH(0) <= '1';
+        wait for 0.25*k;
+        
+    end process;
 end Behavioral;

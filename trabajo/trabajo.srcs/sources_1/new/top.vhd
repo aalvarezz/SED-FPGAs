@@ -24,12 +24,12 @@ use IEEE.std_logic_1164.all;
 
 ENTITY top_entity IS
     PORT ( 
-        RST      : IN std_logic;
-        BOTONES  : IN std_logic_vector(4 DOWNTO 0);
-        CLK      : IN std_logic;
-        SWITCH   : IN std_logic_vector(1 DOWNTO 0);
-        LEDS     : OUT std_logic_vector(15 DOWNTO 0);
-        LEDS_BGR : OUT std_logic_vector(2 DOWNTO 0)
+        RST      : in std_logic;
+        CLK      : in std_logic;
+        BOTONES  : in std_logic_vector(4 DOWNTO 0);
+        SWITCH   : in std_logic_vector(1 DOWNTO 0);
+        LEDS     : out std_logic_vector(15 DOWNTO 0);
+        LEDS_BGR : out std_logic_vector(2 DOWNTO 0)
 );
 END top_entity;
 
@@ -64,9 +64,11 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     --Formador de palabra REVISAR
     COMPONENT formador_palabra is
     	port (
+    	    RST         : in std_logic;
     		CLK         : in std_logic;
         	BOTONES     : in std_logic_vector(4 downto 0);
     		ENABLE_FP   : in std_logic;
+    		INTRODUCIDA : out std_logic;
         	PALABRA     : out std_logic_vector(7 downto 0);
             LED_PALABRA : out std_logic_vector(3 downto 0)
         );
@@ -75,12 +77,13 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     --Comprobador de palabra REVISAR
     COMPONENT comprobador_palabra is
     	port (
-            RST     : in std_logic;
-            CLK     : in std_logic;
-            ENABLE  : in std_logic;
-            PALABRA : in std_logic_vector(7 downto 0);
-            LEDS    : out std_logic_vector(1 downto 0);
-            CORRECT : out std_logic
+            RST         : in std_logic;
+            CLK         : in std_logic;
+            ENABLE      : in std_logic;
+            INTRODUCIDA : in std_logic;
+            PALABRA     : in std_logic_vector(7 downto 0);
+            LEDS        : out std_logic_vector(1 downto 0);
+            CORRECT     : out std_logic
         );
     end COMPONENT;
     
@@ -126,8 +129,9 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     SIGNAL dfb_fsm : std_logic;
 
     --Señales llegada a CP
-    SIGNAL fsm_cp : std_logic;
-    SIGNAL fp_cp  : std_logic_vector(7 DOWNTO 0);
+    SIGNAL fsm_cp             : std_logic;
+    SIGNAL fp_cp              : std_logic_vector(7 DOWNTO 0);
+    SIGNAL fp_cp_introducida  : std_logic;
     
     --Señales llegada a FP
     SIGNAL df_fp  : std_logic_vector(4 DOWNTO 0);
@@ -222,9 +226,11 @@ begin
     
     --FORMADOR_PALABRA
     FORMADOR_DE_PALABRA : formador_palabra port map (
+        RST         => RST,
     	CLK         => CLK,
         BOTONES     => df_fp,
     	ENABLE_FP   => fsm_fp,
+    	INTRODUCIDA => fp_cp_introducida,
         PALABRA     => fp_cp,
         LED_PALABRA => fp_luces
     );
@@ -232,12 +238,13 @@ begin
     
     --COMPROBADOR_PALABRA
     COMPROBADOR_DE_PALABRA : comprobador_palabra port map (
-        RST     => RST,
-        CLK     => CLK,
-        ENABLE  => fsm_cp,
-        PALABRA => fp_cp,
-        LEDS    => cp_luces,
-        CORRECT => cp_fsm
+        RST         => RST,
+        CLK         => CLK,
+        ENABLE      => fsm_cp,
+        INTRODUCIDA => fp_cp_introducida,
+        PALABRA     => fp_cp,
+        LEDS        => cp_luces,
+        CORRECT     => cp_fsm
     );
     
     
