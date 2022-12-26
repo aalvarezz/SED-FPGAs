@@ -32,19 +32,20 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity comprobador_palabra is
-    port (
-        RST       : in std_logic;
-        CLK       : in std_logic;
-        ENABLE    : in std_logic;
-        PALABRA   : in std_logic_vector(7 downto 0);
-        LEDS      : out std_logic_vector(1 downto 0);
-        CORRECT   : out std_logic
+    port (                
+        RST         : in std_logic;
+        CLK         : in std_logic;
+        ENABLE      : in std_logic;
+        INTRODUCIDA : in std_logic;
+        PALABRA     : in std_logic_vector(7 downto 0);
+        LEDS        : out std_logic_vector(1 downto 0);
+        CORRECT     : out std_logic
     );
 end comprobador_palabra;
 
 architecture Behavioral of comprobador_palabra is
 begin
-    comparador : process(RST, CLK, ENABLE)
+    comparador : process(RST, CLK, ENABLE, INTRODUCIDA)
         variable password : std_logic_vector(7 downto 0);
     begin
         if RST = '0' then
@@ -54,21 +55,23 @@ begin
             LEDS(1) <= '0';
         end if;
         
-        if ENABLE = '1' then --Registro --FALTA CONDICIÓN CONTRASEÑA INTRODUCIDA
+        if ENABLE = '1' and INTRODUCIDA = '1' then --Registro
             CORRECT <= '1';
             password := PALABRA; --Se almacena la palabra introducida como contraseña
             LEDS(0) <= '1';
             LEDS(1) <= '0';
         end if;
         
-        if ENABLE = '0' and password = PALABRA then --Log in
-            CORRECT <= '1';
-            LEDS(0) <= '1';
-            LEDS(1) <= '0';
-        elsif ENABLE = '0' and password /= PALABRA then
-            CORRECT <= '0';
-            LEDS(0) <= '0';
-            LEDS(1) <= '1';
+        if ENABLE = '0' and INTRODUCIDA = '1' then  --Log in
+            if password = PALABRA then
+                CORRECT <= '1';
+                LEDS(0) <= '1';
+                LEDS(1) <= '0';
+            elsif password /= PALABRA then
+                CORRECT <= '0';
+                LEDS(0) <= '0';
+                LEDS(1) <= '1';
+            end if;
         end if;
     end process;
 end Behavioral;
