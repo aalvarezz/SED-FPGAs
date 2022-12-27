@@ -35,7 +35,7 @@ entity top_tb is
 end top_tb;
 
 architecture Behavioral of top_tb is
-    component top
+    component top_entity
         port(
             RST      : in std_logic;
             CLK      : in std_logic;
@@ -56,7 +56,7 @@ architecture Behavioral of top_tb is
     
 begin
 
-    uut : top port map(
+    uut : top_entity port map(
         RST      => rst,
         CLK      => clk,
         BOTONES  => botones,
