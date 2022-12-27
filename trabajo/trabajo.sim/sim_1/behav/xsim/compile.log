@@ -1,4 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "D:/Vivado/trabajo/trabajo.srcs/sources_1/new/top.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'top_entity'
-INFO: [VRFC 10-163] Analyzing VHDL file "D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/comprobadorpalabra.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'comprobador_palabra'
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/Vivado/trabajo/trabajo.srcs/sim_1/new/top_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'top_tb'

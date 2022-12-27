@@ -222,9 +222,8 @@ begin
             when S21 =>
                 --Se ha terminado de introducir satisfactoriamente la palabra, a través de esta señal se le comunica a los demás componentes
                 INTRODUCIDA <= '1';
-            when others =>
-                auxiliar := auxiliar;
-                --led_contrasena <= led_contrasena; BERRY TRUCO?
+                LED_PALABRA <= "0000";
+            --when others =>
         end case;
                 PALABRA <= auxiliar;
              end process;
