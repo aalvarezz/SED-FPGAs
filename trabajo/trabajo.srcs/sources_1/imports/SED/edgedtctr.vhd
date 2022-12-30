@@ -24,9 +24,9 @@ begin
             end if;
             
             --Revisar if/else vs with/select
-            if sreg = "011" then 
+            if sreg = "011" and rising_edge(CLK) then 
                 EDGE <= '1';
-            else
+            elsif rising_edge(CLK) then
                 EDGE <= '0';
             end if;
         elsif SELEC = '0' then
@@ -38,9 +38,9 @@ begin
             end if;
             
             --Revisar if/else vs with/select
-            if sreg = "100" then 
+            if sreg = "100" and rising_edge(CLK) then 
                 EDGE <= '1';
-            else
+            elsif rising_edge(CLK) then
                 EDGE <= '0';
             end if;
         end if;

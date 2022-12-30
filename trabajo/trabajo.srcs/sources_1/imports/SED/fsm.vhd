@@ -89,19 +89,19 @@ begin
     output_decod: process (current_state)
     begin
         case current_state is
-            when S0 =>
+            when S0 => --Registro
                 ENABLE_CP <= '1'; --Enable para habilitar la función de registro
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
                 LED       <= '0';
-            when S1 =>
+            when S1 => --Log in
                 ENABLE_CP <= '0'; --Se desactiva el Enable para habilitar la función de log in (PROVISIONAL)
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
                 LED       <= '0';
-            when S2 =>
+            when S2 => --Selección de modo
                 ENABLE_CP <= '0';
                 ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
                 LED       <= '0';
-            when S3 =>
+            when S3 => --Funcionalidad
                 ENABLE_CP <= '0';
                 ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
                 LED       <= '1'; --Funcion provisional

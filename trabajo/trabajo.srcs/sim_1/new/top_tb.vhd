@@ -83,7 +83,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';         	
-     	wait for k;
+     	wait for 4*k;
      	
      	--Segundo dígito
      	BOTONES(0) <= '0';
@@ -91,7 +91,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';      	
-     	wait for k;
+     	wait for 4*k;
      	
      	--Tercer dígito
      	BOTONES(0) <= '0';
@@ -99,7 +99,7 @@ begin
      	BOTONES(2) <= '1';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';      	
-     	wait for k;
+     	wait for 4*k;
      	
      	--Cuarto dígito
      	BOTONES(0) <= '0';
@@ -107,7 +107,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '1';
      	BOTONES(4) <= '0';      	
-     	wait for k;
+     	wait for 4*k;
         
      	--Confirmación
      	BOTONES(0) <= '0';
@@ -115,7 +115,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '1';      	
-     	wait for 4*k;
+     	wait for 6*k;
      	
      	--Pausa
      	BOTONES(0) <= '0';
@@ -123,7 +123,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';      	
-     	wait for 4*k;
+     	wait for 6*k;
         
         --LOGIN
         --Primer dígito	
@@ -132,7 +132,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';         	
-     	wait for k;
+     	wait for 4*k;
      	
      	--Segundo dígito
      	BOTONES(0) <= '0';
@@ -140,7 +140,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';      	
-     	wait for k;
+     	wait for 4*k;
      	
      	--Tercer dígito
      	BOTONES(0) <= '0';
@@ -148,7 +148,7 @@ begin
      	BOTONES(2) <= '1';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';      	
-     	wait for k;
+     	wait for 4*k;
      	
      	--Cuarto dígito
      	BOTONES(0) <= '0';
@@ -156,7 +156,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '1';
      	BOTONES(4) <= '0';      	
-     	wait for k;
+     	wait for 4*k;
         
      	--Confirmación
      	BOTONES(0) <= '0';
@@ -164,7 +164,7 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '1';      	
-     	wait for 4*k;
+     	wait for 6*k;
         
      	--Pausa
      	BOTONES(0) <= '0';
@@ -172,11 +172,11 @@ begin
      	BOTONES(2) <= '0';
      	BOTONES(3) <= '0';
      	BOTONES(4) <= '0';      	
-     	wait for 4*k;
+     	wait for 6*k;
         
         --ELECCIÓN 1
         SWITCH(0) <= '1';
-        wait for 0.25*k;
+        wait for 4*k;
         
     end process;
 end Behavioral;

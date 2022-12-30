@@ -147,6 +147,9 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     --Señales llegada a DF_N de switches
     SIGNAL sinc_dfn_sw : std_logic;
     
+    --Señales llegada a DF de CP
+    SIGNAL cp_df : std_logic;
+    
 begin
 
 	--Genera sincronizadores para los botones
@@ -222,8 +225,18 @@ begin
     	SELEC   => '1',
     	EDGE    => dfb_fsm
     );
-
     
+    
+    --Detector de flancos de subida CP
+    DF_CP : edgedtctr port map (
+    	RST_N   => RST,
+        CLK     => CLK,
+    	SYNC_IN => cp_df,
+    	SELEC   => '0',
+    	EDGE    => cp_fsm --revisar nombre
+    );
+
+
     --FORMADOR_PALABRA
     FORMADOR_DE_PALABRA : formador_palabra port map (
         RST         => RST,
@@ -244,7 +257,7 @@ begin
         INTRODUCIDA => fp_cp_introducida,
         PALABRA     => fp_cp,
         LEDS        => cp_luces,
-        CORRECT     => cp_fsm
+        CORRECT     => cp_df
     );
     
     

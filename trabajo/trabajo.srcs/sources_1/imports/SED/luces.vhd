@@ -16,7 +16,7 @@ end luces;
 architecture BEHAVIORAL of luces is
 begin
 
-    process(RST, CLK)
+    process(RST, CLK, LEDS_FSM)
     begin
         if RST = '0' then
             ASIGNACION0 : for k in 0 to 15 loop

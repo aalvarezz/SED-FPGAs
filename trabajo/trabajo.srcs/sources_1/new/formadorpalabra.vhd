@@ -223,7 +223,7 @@ begin
                 --Se ha terminado de introducir satisfactoriamente la palabra, a través de esta señal se le comunica a los demás componentes
                 INTRODUCIDA <= '1';
                 LED_PALABRA <= "0000";
-            --when others =>
+            when others =>
         end case;
                 PALABRA <= auxiliar;
              end process;

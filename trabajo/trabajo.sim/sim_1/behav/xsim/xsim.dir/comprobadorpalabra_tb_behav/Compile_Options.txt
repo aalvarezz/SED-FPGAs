@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "comprobadorpalabra_tb_behav" "xil_defaultlib.comprobadorpalabra_tb" -log "elaborate.log" 

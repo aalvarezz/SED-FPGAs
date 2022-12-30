@@ -11,7 +11,7 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavioral of entity xil_defaultlib.SYNCHRNZR [synchrnzr_default]
+Compiling architecture behavioral of entity xil_defaultlib.synchrnzr [synchrnzr_default]
 Compiling architecture behavioral of entity xil_defaultlib.EDGEDTCTR [edgedtctr_default]
 Compiling architecture behavioral of entity xil_defaultlib.formador_palabra [formador_palabra_default]
 Compiling architecture behavioral of entity xil_defaultlib.comprobador_palabra [comprobador_palabra_default]

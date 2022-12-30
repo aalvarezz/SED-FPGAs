@@ -45,10 +45,10 @@ end comprobador_palabra;
 
 architecture Behavioral of comprobador_palabra is
 begin
-    comparador : process(RST, CLK, ENABLE, INTRODUCIDA)
+    comparador : process(CLK, RST, ENABLE, INTRODUCIDA)
         variable password : std_logic_vector(7 downto 0);
     begin
-        if RST = '0' then
+        if RST = '0' then --REVISAR
             password := "00000000";
             CORRECT <= '0';
             LEDS(0) <= '0';
@@ -68,7 +68,6 @@ begin
                 LEDS(0) <= '1';
                 LEDS(1) <= '0';
             elsif password /= PALABRA then
-                CORRECT <= '0';
                 LEDS(0) <= '0';
                 LEDS(1) <= '1';
             end if;
