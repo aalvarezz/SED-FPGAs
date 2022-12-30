@@ -15,7 +15,7 @@ signal sreg : std_logic_vector(2 downto 0);
 begin
 process (CLK, RST_N)
 begin
-	if SELEC '1' then
+	if SELEC = '1' then
 		if RST_N ='0' then
 			sreg <= "000";
 		elsif rising_edge(CLK) then
@@ -30,10 +30,9 @@ begin
 		elsif rising_edge(CLK) then
 			sreg <= sreg(1 downto 0) & SYNC_IN;
 		end if;
-		end process;
 		with sreg select
 			EDGE <= '1' when "100",
 			'0' when others;
-     end if
+     end if;
 end process;
 end BEHAVIORAL;
