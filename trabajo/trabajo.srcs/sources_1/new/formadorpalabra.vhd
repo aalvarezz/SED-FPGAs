@@ -50,7 +50,7 @@ begin
         end if;
     end process;
 
-    nextstate_decod: process (current_state, BOTONES, ENABLE_FP)
+    nextstate_decod: process (current_state, BOTONES)
     begin
         next_state <= current_state;
         if ENABLE_FP = '1' then
@@ -151,6 +151,7 @@ begin
             when S0 => 
                 auxiliar := (OTHERS => '0');
                 LED_PALABRA <= (OTHERS => '0');
+                INTRODUCIDA <= '0';
             when S1 =>
                 auxiliar(0) := '0';
                 auxiliar(1) := '0';

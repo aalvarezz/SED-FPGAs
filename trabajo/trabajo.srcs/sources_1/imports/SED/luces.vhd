@@ -25,9 +25,7 @@ begin
             ASIGNACION1 : for k in 0 to 2 loop
                 LEDS_OUT_BGR(k) <= '0';
             end loop ASIGNACION1;
-        end if;
-        
-        if rising_edge(CLK) then
+        elsif rising_edge(CLK) then
             if LEDS_FSM = '0' then
                 ASIGNACION2 : for k in 0 to 15 loop
                     LEDS_OUT(k) <= '0';
@@ -47,11 +45,14 @@ begin
                     LEDS_OUT_BGR(2) <= '1';
                 end if;
             elsif LEDS_FSM = '1' then --Aquí iría la funcionalidad con CLK
-                ASIGNACION4 : for j in 0 to 15 loop
-                    LEDS_OUT(j) <= '1';
+                ASIGNACION4 : for k in 0 to 2 loop
+                    LEDS_OUT_BGR(k) <= '0';
                 end loop ASIGNACION4;
+                
+                ASIGNACION5 : for j in 0 to 15 loop
+                    LEDS_OUT(j) <= '1';
+                end loop ASIGNACION5;
             end if;
         end if;
-    
     end process;
 end BEHAVIORAL;

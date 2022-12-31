@@ -70,29 +70,43 @@ begin
      
      stimuli: process
      begin
-     	--RST<='0';
         PALABRA<="01010101";
         ENABLE<='0';
         INTRODUCIDA<='0';
         wait for k;
         
-        ENABLE<='1';
-        wait for 0.5*k;
+        ENABLE<='1'; --Registro
+        wait for k;
         
         INTRODUCIDA<='1';
-        wait for 0.5*k;
+        wait for 0.2*k;
         
         INTRODUCIDA<='0';
-        ENABLE<='0';
         wait for 0.5*k;
         
-        INTRODUCIDA<='1';
+        ENABLE<='0'; --Log in incorrecto
         wait for k;
         
         PALABRA<="11111110";
         wait for k;
         
         INTRODUCIDA<='1';
+        wait for 0.2*k;
+        
+        INTRODUCIDA<='0';
+        wait for 0.5*k;
      	
+        ENABLE<='0'; --Log in correcto
+        wait for k;
+        
+        PALABRA<="01010101";
+        wait for k;
+        
+        INTRODUCIDA<='1';
+        wait for 0.2*k;
+        
+        INTRODUCIDA<='0';
+        wait for 0.5*k;
+        
      end process;
 end Behavioral;

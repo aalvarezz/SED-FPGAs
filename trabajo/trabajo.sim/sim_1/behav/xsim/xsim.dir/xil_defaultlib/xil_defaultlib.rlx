@@ -2,15 +2,16 @@
 2020.2
 Oct 14 2022
 05:20:55
-D:/Vivado/trabajo/trabajo.srcs/sim_1/new/comprobadorpalabra_tb.vhd,1672431212,vhdl,,,,comprobador_palabra_tb,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sim_1/new/comprobadorpalabra_tb.vhd,1672449739,vhdl,,,,comprobador_palabra_tb,,,,,,,,
 D:/Vivado/trabajo/trabajo.srcs/sim_1/new/edgedtctr_tb.vhd,1672427394,vhdl,,,,edgedtctr_tb,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sim_1/new/formadorpalabra_tb.vhd,1672442102,vhdl,,,,formador_palabra_tb,,,,,,,,
 D:/Vivado/trabajo/trabajo.srcs/sim_1/new/fsm_tb.vhd,1672427871,vhdl,,,,fsm_tb,,,,,,,,
 D:/Vivado/trabajo/trabajo.srcs/sim_1/new/synchrnzr_tb.vhd,1672425672,vhdl,,,,synchrnzr_tb,,,,,,,,
-D:/Vivado/trabajo/trabajo.srcs/sim_1/new/top_tb.vhd,1672434030,vhdl,,,,top_tb,,,,,,,,
-D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/comprobadorpalabra.vhd,1672432462,vhdl,,,,comprobador_palabra,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sim_1/new/top_tb.vhd,1672448588,vhdl,,,,top_tb,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/comprobadorpalabra.vhd,1672449882,vhdl,,,,comprobador_palabra,,,,,,,,
 D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/edgedtctr.vhd,1672427729,vhdl,,,,edgedtctr,,,,,,,,
-D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/fsm.vhd,1672428118,vhdl,,,,fsm,,,,,,,,
-D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/luces.vhd,1672433790,vhdl,,,,luces,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/fsm.vhd,1672449338,vhdl,,,,fsm,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/luces.vhd,1672447370,vhdl,,,,luces,,,,,,,,
 D:/Vivado/trabajo/trabajo.srcs/sources_1/imports/SED/synchrnzr.vhd,1672147238,vhdl,,,,synchrnzr,,,,,,,,
-D:/Vivado/trabajo/trabajo.srcs/sources_1/new/formadorpalabra.vhd,1672147290,vhdl,,,,formador_palabra,,,,,,,,
-D:/Vivado/trabajo/trabajo.srcs/sources_1/new/top.vhd,1672432837,vhdl,,,,top_entity,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sources_1/new/formadorpalabra.vhd,1672445009,vhdl,,,,formador_palabra,,,,,,,,
+D:/Vivado/trabajo/trabajo.srcs/sources_1/new/top.vhd,1672445123,vhdl,,,,top_entity,,,,,,,,

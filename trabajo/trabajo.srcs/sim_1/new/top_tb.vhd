@@ -76,107 +76,99 @@ begin
     stimuli: process
     begin
         
+        --Estado inicial
+        BOTONES(0) <= '0';
+        BOTONES(1) <= '0';
+     	BOTONES(2) <= '0';
+     	BOTONES(3) <= '0';
+     	BOTONES(4) <= '0';         	
+     	wait for k;
+     	
         --REGISTRO
         --Primer dígito	
-     	BOTONES(0) <= '1';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';         	
-     	wait for 4*k;
+     	BOTONES(0) <= '1';     	
+     	wait for 3*k;
+     	BOTONES(0) <= '0';
      	
      	--Segundo dígito
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '1';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';      	
-     	wait for 4*k;
+     	BOTONES(1) <= '1';     	
+     	wait for k;
+     	BOTONES(1) <= '0';
      	
      	--Tercer dígito
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '1';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';      	
-     	wait for 4*k;
+     	BOTONES(2) <= '1';     	
+     	wait for k;
+     	BOTONES(2) <= '0';
      	
      	--Cuarto dígito
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '1';
-     	BOTONES(4) <= '0';      	
-     	wait for 4*k;
+     	BOTONES(3) <= '1';     	
+     	wait for k;
+     	BOTONES(3) <= '0';
         
      	--Confirmación
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
      	BOTONES(4) <= '1';      	
-     	wait for 6*k;
+     	wait for k;
+     	BOTONES(4) <= '0';
      	
-     	--Pausa
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';      	
-     	wait for 6*k;
-        
-        --LOGIN
+     	--LOGIN INCORRECTO
         --Primer dígito	
-     	BOTONES(0) <= '1';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';         	
-     	wait for 4*k;
+     	BOTONES(0) <= '1';     	
+     	wait for k;
+     	BOTONES(0) <= '0';
      	
      	--Segundo dígito
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '1';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';      	
-     	wait for 4*k;
+     	BOTONES(1) <= '1';     	
+     	wait for k;
+     	BOTONES(1) <= '0';
      	
      	--Tercer dígito
+     	BOTONES(0) <= '1';     	
+     	wait for k;
      	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '1';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';      	
-     	wait for 4*k;
      	
      	--Cuarto dígito
-     	BOTONES(0) <= '0';
+     	BOTONES(1) <= '1';     	
+     	wait for k;
      	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '1';
-     	BOTONES(4) <= '0';      	
-     	wait for 4*k;
         
      	--Confirmación
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
      	BOTONES(4) <= '1';      	
-     	wait for 6*k;
-        
-     	--Pausa
-     	BOTONES(0) <= '0';
-     	BOTONES(1) <= '0';
-     	BOTONES(2) <= '0';
-     	BOTONES(3) <= '0';
-     	BOTONES(4) <= '0';      	
-     	wait for 6*k;
-        
+     	wait for k;
+     	BOTONES(4) <= '0';
+     	
         --ELECCIÓN 1
         SWITCH(0) <= '1';
-        wait for 4*k;
+        wait for k;
+        
+        --LOGIN CORRECTO
+        --Primer dígito	
+     	BOTONES(0) <= '1';     	
+     	wait for k;
+     	BOTONES(0) <= '0';
+     	
+     	--Segundo dígito
+     	BOTONES(1) <= '1';     	
+     	wait for k;
+     	BOTONES(1) <= '0';
+     	
+     	--Tercer dígito
+     	BOTONES(2) <= '1';     	
+     	wait for k;
+     	BOTONES(2) <= '0';
+     	
+     	--Cuarto dígito
+     	BOTONES(3) <= '1';     	
+     	wait for k;
+     	BOTONES(3) <= '0';
+        
+     	--Confirmación
+     	BOTONES(4) <= '1';      	
+     	wait for k;
+     	BOTONES(4) <= '0';
+     	
+        --ELECCIÓN 1
+        SWITCH(0) <= '1';
+        wait for k;
         
     end process;
 end Behavioral;

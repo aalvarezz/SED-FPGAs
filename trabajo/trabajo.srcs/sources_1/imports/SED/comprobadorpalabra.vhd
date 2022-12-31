@@ -44,32 +44,39 @@ entity comprobador_palabra is
 end comprobador_palabra;
 
 architecture Behavioral of comprobador_palabra is
+    signal reg_correct : std_logic_vector(2 downto 0);
 begin
-    comparador : process(CLK, RST, ENABLE, INTRODUCIDA)
+    comparador : process(CLK, RST)
         variable password : std_logic_vector(7 downto 0);
     begin
         if RST = '0' then --REVISAR
             password := "00000000";
             CORRECT <= '0';
             LEDS(0) <= '0';
+            LEDS(1) <= '0'; 
+        elsif rising_edge(CLK) then
+            LEDS(0) <= '0';
             LEDS(1) <= '0';
-        end if;
-        
-        if ENABLE = '1' and INTRODUCIDA = '1' then --Registro
-            CORRECT <= '1';
-            password := PALABRA; --Se almacena la palabra introducida como contraseña
-            LEDS(0) <= '1';
-            LEDS(1) <= '0';
-        end if;
-        
-        if ENABLE = '0' and INTRODUCIDA = '1' then  --Log in
-            if password = PALABRA then
-                CORRECT <= '1';
-                LEDS(0) <= '1';
-                LEDS(1) <= '0';
-            elsif password /= PALABRA then
-                LEDS(0) <= '0';
-                LEDS(1) <= '1';
+            reg_correct <= reg_correct(1 downto 0) & INTRODUCIDA;
+            if reg_correct = "010" then
+                if ENABLE = '1' then --Registro
+                    CORRECT <= '1';
+                    password := PALABRA; --Se almacena la palabra introducida como contraseña
+                    LEDS(0) <= '1';
+                    LEDS(1) <= '0';
+                elsif ENABLE = '0' then  --Log in
+                    if password = PALABRA then
+                        CORRECT <= '1';
+                        LEDS(0) <= '1';
+                        LEDS(1) <= '0';
+                    elsif password /= PALABRA then
+                        CORRECT <= '0';
+                        LEDS(0) <= '0';
+                        LEDS(1) <= '1';
+                    end if;
+                end if;
+            else
+                CORRECT <= '0';
             end if;
         end if;
     end process;
