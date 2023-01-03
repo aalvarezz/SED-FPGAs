@@ -76,28 +76,41 @@ begin
      stimuli: process
      begin
      	--RST<='0';
+        CORRECT<='0';
         SWITCH1<='0';
         SWITCH2<='0';
         SWITCH1_N<='0';
-        CORRECT<='0';
-      	wait for 0.1*k;
+      	wait for k;
+      	
+      	--S0 -> S1
      	CORRECT<='1';
-        wait for k;
-        SWITCH1<='1';
-        wait for k;
-        SWITCH1<='0';
-        SWITCH1_N<='1';
-        wait for k;
+        wait for 0.2*k;
         CORRECT<='0';
-        SWITCH1<='1';
         wait for k;
-        SWITCH1<='0';
-        SWITCH1_N<='1';
-        wait for k;
-        SWITCH2<='1';
-        wait for 2*k;
+        
+        --S1 -> S2
         CORRECT<='1';
-        wait for 2*k;
+        wait for 0.2*k;
+        CORRECT<='0';
+        wait for k;
+        
+        --S2 -> S3
+        SWITCH1<='1';
+        wait for 0.2*k;
+        SWITCH1<='0';
+        wait for k;
+        
+        --S3 -> S2
+        SWITCH1_N<='1';
+        wait for 0.2*k;
+        SWITCH1_N<='0';
+        wait for k;
+        
+        --S2 -> S0
+        SWITCH2<='1';
+        wait for 0.2*k;
+        SWITCH2<='0';
+        wait for k;
      	
      end process;
 end Behavioral;

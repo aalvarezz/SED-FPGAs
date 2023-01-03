@@ -59,7 +59,7 @@ begin
         end if;
     end process;
  
-    nextstate_decod : process (current_state)
+    nextstate_decod : process (current_state, CORRECT, SWITCH1, SWITCH1_N, SWITCH2)
     begin
         next_state <= current_state;
         case current_state is

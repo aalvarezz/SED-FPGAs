@@ -1,7 +1,7 @@
-Running: xsim.dir/formador_palabra_tb_behav/xsimk.exe -simmode gui -wdb formador_palabra_tb_behav.wdb -simrunnum 0 -socket 53651
+Running: xsim.dir/formador_palabra_tb_behav/xsimk.exe -simmode gui -wdb formador_palabra_tb_behav.wdb -simrunnum 0 -socket 59957
 Design successfully loaded
-Design Loading Memory Usage: 7120 KB (Peak: 7120 KB)
-Design Loading CPU Usage: 46 ms
+Design Loading Memory Usage: 7096 KB (Peak: 7096 KB)
+Design Loading CPU Usage: 15 ms
 Simulation completed
-Simulation Memory Usage: 7608 KB (Peak: 7608 KB)
-Simulation CPU Usage: 46 ms
+Simulation Memory Usage: 7652 KB (Peak: 7652 KB)
+Simulation CPU Usage: 15 ms
