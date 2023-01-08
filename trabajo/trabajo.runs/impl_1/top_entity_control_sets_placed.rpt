@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Thu Dec 22 19:17:02 2022
-| Host         : LAPTOP-OBBPV5AQ running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Fri Jan  6 23:47:20 2023
+| Host         : DESKTOP-075L5C7 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_entity_control_sets_placed.rpt
 | Design       : top_entity
 | Device       : xc7a100t
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    32 |
-|    Minimum number of control sets                        |    32 |
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   192 |
+| Unused register locations in slices containing registers |    50 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,13 +39,13 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    32 |
-| >= 0 to < 4        |    26 |
+| Total control sets |    12 |
+| >= 0 to < 4        |     6 |
 | >= 4 to < 6        |     2 |
-| >= 6 to < 8        |     1 |
-| >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     0 |
-| >= 12 to < 14      |     1 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     2 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
 | >= 16              |     1 |
 +--------------------+-------+
@@ -58,53 +58,33 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              37 |           17 |
-| No           | No                    | Yes                    |              46 |           20 |
-| No           | Yes                   | No                     |              12 |            8 |
-| Yes          | No                    | No                     |               7 |            2 |
-| Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               2 |            1 |
+| No           | No                    | No                     |              21 |           11 |
+| No           | No                    | Yes                    |              35 |           12 |
+| No           | Yes                   | No                     |              21 |            6 |
+| Yes          | No                    | No                     |              10 |            2 |
+| Yes          | No                    | Yes                    |              15 |            5 |
+| Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
-|                        Clock Signal                       |                     Enable Signal                     |                    Set/Reset Signal                   | Slice Load Count | Bel Load Count | Bels / Slice |
-+-----------------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_2/sreg[1]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_2/sreg[0]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_2/sreg[2]                                       |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_2/sreg[1]                                       |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_2/sreg[2]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_1/sreg[2]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_1/sreg[1]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_1/sreg[0]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_1/sreg[1]                                       |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | DF_SW_1/sreg[2]                                       |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | SW_SYNC_2/SYNC_OUT_reg_0[0]                           |                1 |              1 |         1.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | SW_SYNC_1/SYNC_OUT_reg_0[0]                           |                1 |              1 |         1.00 |
-|  DF_SW_2/sreg[2]                                          |                                                       | DF_SW_2/sreg[2]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  DF_SW_2/sreg[1]                                          |                                                       | DF_SW_2/sreg[1]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  DF_SW_1/sreg[1]                                          |                                                       | DF_SW_1/sreg[1]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  DF_SW_1/sreg[2]                                          |                                                       | DF_SW_1/sreg[2]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  SW_SYNC_2/SYNC_OUT_reg_0[0]                              |                                                       | DF_SW_2/sreg[0]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  SW_SYNC_1/SYNC_OUT_reg_0[0]                              |                                                       | DF_SW_1/sreg[0]_LDC_i_2_n_0                           |                1 |              1 |         1.00 |
-|  MAQUINA_ESTADOS/FSM_sequential_current_state_reg[1]_3    |                                                       | MAQUINA_ESTADOS/FSM_sequential_current_state_reg[0]_0 |                1 |              2 |         2.00 |
-|  MAQUINA_ESTADOS/FSM_sequential_current_state_reg[1]_1[0] |                                                       |                                                       |                1 |              2 |         2.00 |
-|  CLK_IBUF_BUFG                                            | MAQUINA_ESTADOS/FSM_sequential_current_state_reg[1]_4 | MAQUINA_ESTADOS/SR[0]                                 |                1 |              2 |         2.00 |
-|  FORMADOR_DE_PALABRA/PALABRA_reg[1]_i_2_n_0               |                                                       |                                                       |                1 |              2 |         2.00 |
-|  FORMADOR_DE_PALABRA/PALABRA_reg[5]_i_2_n_0               |                                                       |                                                       |                1 |              2 |         2.00 |
-|  FORMADOR_DE_PALABRA/PALABRA_reg[7]_i_2_n_0               |                                                       |                                                       |                1 |              2 |         2.00 |
-|  FORMADOR_DE_PALABRA/PALABRA_reg[3]_i_1_n_0               |                                                       |                                                       |                1 |              2 |         2.00 |
-|  B_DF_GEN[4].B_DF/E[0]                                    |                                                       |                                                       |                1 |              3 |         3.00 |
-|  CLK_IBUF_BUFG                                            |                                                       | MAQUINA_ESTADOS/fsm_luces                             |                1 |              4 |         4.00 |
-|  FORMADOR_DE_PALABRA/LED_PALABRA_reg[3]_i_2_n_0           |                                                       |                                                       |                1 |              4 |         4.00 |
-|  CLK_IBUF_BUFG                                            | RST_IBUF                                              |                                                       |                2 |              7 |         3.50 |
-|  MAQUINA_ESTADOS/E[0]                                     |                                                       |                                                       |                2 |              8 |         4.00 |
-|  CLK_IBUF_BUFG                                            |                                                       |                                                       |                8 |             12 |         1.50 |
-|  CLK_IBUF_BUFG                                            |                                                       | B_DF_GEN[0].B_DF/AR[0]                                |                8 |             34 |         4.25 |
-+-----------------------------------------------------------+-------------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
++-------------------------------------------------+-------------------------------------------------------------+----------------------------+------------------+----------------+--------------+
+|                   Clock Signal                  |                        Enable Signal                        |      Set/Reset Signal      | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------------------------+-------------------------------------------------------------+----------------------------+------------------+----------------+--------------+
+|  FORMADOR_DE_PALABRA/INTRODUCIDA_reg_i_1_n_0    |                                                             |                            |                1 |              1 |         1.00 |
+|  FORMADOR_DE_PALABRA/PALABRA_reg[5]_i_2_n_0     |                                                             |                            |                1 |              2 |         2.00 |
+|  FORMADOR_DE_PALABRA/PALABRA_reg[3]_i_1_n_0     |                                                             |                            |                1 |              2 |         2.00 |
+|  FORMADOR_DE_PALABRA/PALABRA_reg[1]_i_2_n_0     |                                                             |                            |                1 |              2 |         2.00 |
+|  FORMADOR_DE_PALABRA/PALABRA_reg[7]_i_1_n_0     |                                                             |                            |                1 |              2 |         2.00 |
+|  CLK_IBUF_BUFG                                  | COMPROBADOR_DE_PALABRA/E[0]                                 | COMPROBADOR_DE_PALABRA/RST |                1 |              2 |         2.00 |
+|  FORMADOR_DE_PALABRA/LED_PALABRA_reg[3]_i_2_n_0 |                                                             |                            |                1 |              4 |         4.00 |
+|  CLK_IBUF_BUFG                                  | FORMADOR_DE_PALABRA/FSM_sequential_current_state[4]_i_1_n_0 | COMPROBADOR_DE_PALABRA/RST |                3 |              5 |         1.67 |
+|  CLK_IBUF_BUFG                                  |                                                             |                            |                5 |              8 |         1.60 |
+|  CLK_IBUF_BUFG                                  | COMPROBADOR_DE_PALABRA/password[7]_i_1_n_0                  | COMPROBADOR_DE_PALABRA/RST |                1 |              8 |         8.00 |
+|  CLK_IBUF_BUFG                                  | RST_IBUF                                                    |                            |                2 |             10 |         5.00 |
+|  CLK_IBUF_BUFG                                  |                                                             | COMPROBADOR_DE_PALABRA/RST |               18 |             56 |         3.11 |
++-------------------------------------------------+-------------------------------------------------------------+----------------------------+------------------+----------------+--------------+
 
 

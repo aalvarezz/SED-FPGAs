@@ -1,0 +1,7 @@
+Running: xsim.dir/luces_tb_behav/xsimk.exe -simmode gui -wdb luces_tb_behav.wdb -simrunnum 0 -socket 53456
+Design successfully loaded
+Design Loading Memory Usage: 7728 KB (Peak: 7728 KB)
+Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 8260 KB (Peak: 8260 KB)
+Simulation CPU Usage: 15 ms

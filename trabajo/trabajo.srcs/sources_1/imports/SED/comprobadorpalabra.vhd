@@ -48,13 +48,17 @@ architecture Behavioral of comprobador_palabra is
     signal password : std_logic_vector(7 downto 0);
 begin
     comparador : process(CLK, RST)
-        --variable password : std_logic_vector(7 downto 0);
     begin
         if RST = '0' then --REVISAR
-            password <= "00000000";
             CORRECT <= '0';
             LEDS(0) <= '0';
             LEDS(1) <= '0'; 
+        
+        --Realmente esta línea no hace nada, ya que, al hacer reset, se devuelve al estado S0(registro) a la fsm, 
+        --lo que provoca que la proxima palabra recibida por el comprobador de palabra sea aceptada como correcta
+        --y se guarde como contraseña, sobreescribiendo a cualquiera que hubiera en ese momento.
+            password <= "00000000";
+            
         elsif rising_edge(CLK) then
             LEDS(0) <= '0';
             LEDS(1) <= '0';

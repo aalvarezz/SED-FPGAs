@@ -30,7 +30,7 @@ entity formador_palabra is
         CLK         : in std_logic; --entrada de reloj
         BOTONES     : in std_logic_vector(4 downto 0); --botones con los que introducir la contraseña
         ENABLE_FP   : in std_logic; --habilita la escritura de la contraseña
-        INTRODUCIDA : out std_logic;
+        INTRODUCIDA : out std_logic; --indica que se ha introducido una contraseña satisfacoriamente
         PALABRA     : out std_logic_vector(7 downto 0); --palabra introducida por el usuario, se calcula según los botones pulsados
         LED_PALABRA : out std_logic_vector(3 downto 0) --leds que se encienden para indicar el numero introducido
         );
@@ -145,11 +145,9 @@ begin
     end process;
 
     output_decod: process (current_state)
-        --variable auxiliar: std_logic_vector(7 downto 0);
     begin
         case current_state is
             when S0 => 
-                --PALABRA <= (OTHERS => '0');
                 LED_PALABRA <= (OTHERS => '0');
                 INTRODUCIDA <= '0';
             when S1 =>
@@ -168,7 +166,7 @@ begin
                 PALABRA(0)  <= '1';
                 PALABRA(1)  <= '1';
                 LED_PALABRA <= "1111";
-            ----------------------primer digito introducido
+            ----------------------primer dígito introducido
             when S6 =>
                 PALABRA(2)  <= '0';
                 PALABRA(3)  <= '0';
@@ -202,7 +200,7 @@ begin
                 PALABRA(4)  <= '1';
                 PALABRA(5)  <= '1';
                 LED_PALABRA <= "1111";
-            -----------------tercer digito dentro
+            -----------------tercer dígito dentro
             when S16 =>
                 PALABRA(6)  <= '0';
                 PALABRA(7)  <= '0';
@@ -221,11 +219,11 @@ begin
                 LED_PALABRA <= "1111";
             -------------------cuarto dígito dentro
             when S21 =>
-                --Se ha terminado de introducir satisfactoriamente la palabra, a través de esta señal se le comunica a los demás componentes
+                --Se ha terminado de introducir satisfactoriamente la palabra, a través de esta señal se le comunica a 
+                --los demás componentes. Está pensado para que sea un pulso
                 INTRODUCIDA <= '1';
                 LED_PALABRA <= "0000";
             when others =>
         end case;
-                --PALABRA <= auxiliar;
              end process;
 end behavioral;

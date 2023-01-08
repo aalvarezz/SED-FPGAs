@@ -63,34 +63,19 @@ begin
      
      stimuli: process
      begin
-     	--RST_N<='0';
         SYNC_IN <= '0';
         SELEC   <= '0';
         wait for k;
         
         SYNC_IN <= '1';
-        wait for k;
+        wait for 5*k;
         
         SYNC_IN <= '0';
-        wait for k;
-        
-        SELEC   <= '1';
-        wait for k;
-        
-        SELEC   <= '0';
-        wait for k;
-        
         SELEC   <= '1';
         wait for k;
         
         SYNC_IN <= '1';
-        wait for 0.2*k;
-        
-        SYNC_IN <= '0';
-        wait for k;
-        
-        SYNC_IN <= '1';
-        wait for 3*k;
+        wait for 5*k;
         
      end process;
 end Behavioral;

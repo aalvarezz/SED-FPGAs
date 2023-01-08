@@ -64,14 +64,6 @@ begin
         LEDS     => leds,
         LEDS_BGR => leds_bgr
         );
-
-    switchP: process
-    begin
-        SWITCH(0)<='0';
-        wait for k;
-        SWITCH(0)<='1';
-        wait for k;
-    end process;
     
     clock: process
     begin 
@@ -85,6 +77,7 @@ begin
     begin
         
         --Estado inicial
+        RST        <= '1';
         BOTONES(0) <= '0';
         BOTONES(1) <= '0';
      	BOTONES(2) <= '0';
@@ -123,6 +116,16 @@ begin
      	BOTONES(4) <= '0';
      	wait for 2*k;
      	
+     	--RST <= '0';
+        --wait for 0.2*k;
+        --RST <= '1';
+     	
+        --ELECCIÓN 1
+        SWITCH(0) <= '1';
+        wait for 2*k;
+        SWITCH(0) <= '0';
+        wait for 2*k;
+     	
      	--LOGIN INCORRECTO
         --Primer dígito	
      	BOTONES(0) <= '1';     	
@@ -155,10 +158,10 @@ begin
      	wait for 2*k;
      	
         --ELECCIÓN 1
-        --SWITCH(0) <= '1';
-        --wait for 2*k;
-        --SWITCH(0) <= '0';
-        --wait for 2*k;
+        SWITCH(0) <= '1';
+        wait for 2*k;
+        SWITCH(0) <= '0';
+        wait for 2*k;
         
         --LOGIN CORRECTO
         --Primer dígito	
@@ -192,8 +195,8 @@ begin
      	wait for 2*k;
      	
         --ELECCIÓN 1
-        --SWITCH(0) <= '1';
-        --wait for 2*k;
+        SWITCH(0) <= '1';
+        wait for 2*k;
         
     end process;
 end Behavioral;

@@ -54,7 +54,7 @@ begin
     begin
         if RST = '0' then
             current_state <= S0;
-        elsif rising_edge(CLK) then --Avanzar de estado al pulso de reloj
+        elsif rising_edge(CLK) then
             current_state <= next_state;
         end if;
     end process;
@@ -94,17 +94,17 @@ begin
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
                 LED       <= '0';
             when S1 => --Log in
-                ENABLE_CP <= '0'; --Se desactiva el Enable para habilitar la función de log in (PROVISIONAL)
+                ENABLE_CP <= '0'; --Se desactiva el Enable para habilitar la función de log in
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
                 LED       <= '0';
             when S2 => --Selección de modo
                 ENABLE_CP <= '0';
-                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
+                ENABLE_FP <= '0';
                 LED       <= '0';
             when S3 => --Funcionalidad
                 ENABLE_CP <= '0';
-                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
-                LED       <= '1'; --Funcion provisional
+                ENABLE_FP <= '0';
+                LED       <= '1'; --Se activa la señal que indica al componente "luces" que realice la funcionalidad
             when others =>
                 ENABLE_CP <= '0';
                 ENABLE_FP <= '0';
