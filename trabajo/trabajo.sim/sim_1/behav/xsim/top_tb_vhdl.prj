@@ -8,6 +8,11 @@ vhdl xil_defaultlib  \
 "../../../../trabajo.srcs/sources_1/imports/SED/luces.vhd" \
 "../../../../trabajo.srcs/sources_1/imports/SED/comprobadorpalabra.vhd" \
 "../../../../trabajo.srcs/sim_1/new/top_tb.vhd" \
+"../../../../trabajo.srcs/sim_1/new/synchrnzr_tb.vhd" \
+"../../../../trabajo.srcs/sim_1/new/edgedtctr_tb.vhd" \
+"../../../../trabajo.srcs/sim_1/new/fsm_tb.vhd" \
+"../../../../trabajo.srcs/sim_1/new/comprobadorpalabra_tb.vhd" \
+"../../../../trabajo.srcs/sim_1/new/formadorpalabra_tb.vhd" \
 
 # Do not sort compile order
 nosort

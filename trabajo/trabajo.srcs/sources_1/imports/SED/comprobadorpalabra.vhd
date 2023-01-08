@@ -44,33 +44,44 @@ entity comprobador_palabra is
 end comprobador_palabra;
 
 architecture Behavioral of comprobador_palabra is
+    signal reg_correct : std_logic_vector(2 downto 0);
+    signal password : std_logic_vector(7 downto 0);
 begin
-    comparador : process(RST, CLK, ENABLE, INTRODUCIDA)
-        variable password : std_logic_vector(7 downto 0);
+    comparador : process(CLK, RST)
     begin
-        if RST = '0' then
-            password := "00000000";
+        if RST = '0' then --REVISAR
             CORRECT <= '0';
             LEDS(0) <= '0';
-            LEDS(1) <= '0';
-        end if;
+            LEDS(1) <= '0'; 
         
-        if ENABLE = '1' and INTRODUCIDA = '1' then --Registro
-            CORRECT <= '1';
-            password := PALABRA; --Se almacena la palabra introducida como contraseña
-            LEDS(0) <= '1';
+        --Realmente esta línea no hace nada, ya que, al hacer reset, se devuelve al estado S0(registro) a la fsm, 
+        --lo que provoca que la proxima palabra recibida por el comprobador de palabra sea aceptada como correcta
+        --y se guarde como contraseña, sobreescribiendo a cualquiera que hubiera en ese momento.
+            password <= "00000000";
+            
+        elsif rising_edge(CLK) then
+            LEDS(0) <= '0';
             LEDS(1) <= '0';
-        end if;
-        
-        if ENABLE = '0' and INTRODUCIDA = '1' then  --Log in
-            if password = PALABRA then
-                CORRECT <= '1';
-                LEDS(0) <= '1';
-                LEDS(1) <= '0';
-            elsif password /= PALABRA then
+            reg_correct <= reg_correct(1 downto 0) & INTRODUCIDA;
+            if reg_correct = "010" then
+                if ENABLE = '1' then --Registro
+                    CORRECT <= '1';
+                    password <= PALABRA; --Se almacena la palabra introducida como contraseña
+                    LEDS(0) <= '1';
+                    LEDS(1) <= '0';
+                elsif ENABLE = '0' then  --Log in
+                    if password = PALABRA then
+                        CORRECT <= '1';
+                        LEDS(0) <= '1';
+                        LEDS(1) <= '0';
+                    elsif password /= PALABRA then
+                        CORRECT <= '0';
+                        LEDS(0) <= '0';
+                        LEDS(1) <= '1';
+                    end if;
+                end if;
+            else
                 CORRECT <= '0';
-                LEDS(0) <= '0';
-                LEDS(1) <= '1';
             end if;
         end if;
     end process;

@@ -16,7 +16,7 @@ end luces;
 architecture BEHAVIORAL of luces is
 begin
 
-    process(RST, CLK)
+    process(RST, CLK, LEDS_FSM)
     begin
         if RST = '0' then
             ASIGNACION0 : for k in 0 to 15 loop
@@ -25,14 +25,13 @@ begin
             ASIGNACION1 : for k in 0 to 2 loop
                 LEDS_OUT_BGR(k) <= '0';
             end loop ASIGNACION1;
-        end if;
-        
-        if rising_edge(CLK) then
+        elsif rising_edge(CLK) then
             if LEDS_FSM = '0' then
                 ASIGNACION2 : for k in 0 to 15 loop
                     LEDS_OUT(k) <= '0';
                 end loop ASIGNACION2;
-        
+                
+                --LEDS utilizados para indicar el botón presionado al introducir la contraseña                
                 ASIGNACION3 : for k in 0 to 3 loop
                     LEDS_OUT(k) <= LEDS_FP(k);
                 end loop ASIGNACION3;
@@ -46,12 +45,14 @@ begin
                     LEDS_OUT_BGR(1) <= '0';
                     LEDS_OUT_BGR(2) <= '1';
                 end if;
-            elsif LEDS_FSM = '1' then --Aquí iría la funcionalidad con CLK
-                ASIGNACION4 : for j in 0 to 15 loop
-                    LEDS_OUT(j) <= '1';
+            elsif LEDS_FSM = '1' then --Funcionalidad a la que solo se puede acceder con un inicio de sesión satisfactorio
+                ASIGNACION4 : for k in 0 to 2 loop
+                    LEDS_OUT_BGR(k) <= '0';
                 end loop ASIGNACION4;
+                ASIGNACION5 : for j in 0 to 15 loop
+                    LEDS_OUT(j) <= '1';
+                end loop ASIGNACION5;
             end if;
         end if;
-    
     end process;
 end BEHAVIORAL;

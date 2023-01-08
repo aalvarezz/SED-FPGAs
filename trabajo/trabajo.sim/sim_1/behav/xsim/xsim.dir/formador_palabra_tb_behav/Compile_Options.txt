@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "formador_palabra_tb_behav" "xil_defaultlib.formador_palabra_tb" -log "elaborate.log" 

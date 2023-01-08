@@ -30,7 +30,7 @@ entity formador_palabra is
         CLK         : in std_logic; --entrada de reloj
         BOTONES     : in std_logic_vector(4 downto 0); --botones con los que introducir la contraseña
         ENABLE_FP   : in std_logic; --habilita la escritura de la contraseña
-        INTRODUCIDA : out std_logic;
+        INTRODUCIDA : out std_logic; --indica que se ha introducido una contraseña satisfacoriamente
         PALABRA     : out std_logic_vector(7 downto 0); --palabra introducida por el usuario, se calcula según los botones pulsados
         LED_PALABRA : out std_logic_vector(3 downto 0) --leds que se encienden para indicar el numero introducido
         );
@@ -50,7 +50,7 @@ begin
         end if;
     end process;
 
-    nextstate_decod: process (current_state, BOTONES, ENABLE_FP)
+    nextstate_decod: process (current_state, BOTONES)
     begin
         next_state <= current_state;
         if ENABLE_FP = '1' then
@@ -145,86 +145,85 @@ begin
     end process;
 
     output_decod: process (current_state)
-        variable auxiliar: std_logic_vector(7 downto 0);
     begin
         case current_state is
             when S0 => 
-                auxiliar := (OTHERS => '0');
                 LED_PALABRA <= (OTHERS => '0');
+                INTRODUCIDA <= '0';
             when S1 =>
-                auxiliar(0) := '0';
-                auxiliar(1) := '0';
+                PALABRA(0)  <= '0';
+                PALABRA(1)  <= '0';
                 LED_PALABRA <= "0001";
             when S2 =>
-                auxiliar(0) := '1';
-                auxiliar(1) := '0';
+                PALABRA(0)  <= '1';
+                PALABRA(1)  <= '0';
                 LED_PALABRA <= "0011";
             when S3 =>
-                auxiliar(0) := '0';
-                auxiliar(1) := '1';
+                PALABRA(0)  <= '0';
+                PALABRA(1)  <= '1';
                 LED_PALABRA <= "0111";
             when S4 =>
-                auxiliar(0) := '1';
-                auxiliar(1) := '1';
+                PALABRA(0)  <= '1';
+                PALABRA(1)  <= '1';
                 LED_PALABRA <= "1111";
-            ----------------------primer digito introducido
+            ----------------------primer dígito introducido
             when S6 =>
-                auxiliar(2) := '0';
-                auxiliar(3) := '0';
+                PALABRA(2)  <= '0';
+                PALABRA(3)  <= '0';
                 LED_PALABRA <= "0001";
             when S7 =>
-                auxiliar(2) := '1';
-                auxiliar(3) := '0';
+                PALABRA(2)  <= '1';
+                PALABRA(3)  <= '0';
                 LED_PALABRA <= "0011";
             when S8 =>
-                auxiliar(2) := '0';
-                auxiliar(3) := '1';
+                PALABRA(2)  <= '0';
+                PALABRA(3)  <= '1';
                 LED_PALABRA <= "0111";
             when S9 =>
-                auxiliar(2) := '1';
-                auxiliar(3) := '1';
+                PALABRA(2)  <= '1';
+                PALABRA(3)  <= '1';
                 LED_PALABRA <= "1111";
             -----------------------segundo dígito dentro
             when S11 =>
-                auxiliar(4) := '0';
-                auxiliar(5) := '0';
+                PALABRA(4)  <= '0';
+                PALABRA(5)  <= '0';
                 LED_PALABRA <= "0001";
             when S12 =>
-                auxiliar(4) := '1';
-                auxiliar(5) := '0';
+                PALABRA(4)  <= '1';
+                PALABRA(5)  <= '0';
                 LED_PALABRA <= "0011";
             when S13 =>
-                auxiliar(4) := '0';
-                auxiliar(5) := '1';
+                PALABRA(4)  <= '0';
+                PALABRA(5)  <= '1';
                 LED_PALABRA <= "0111";
             when S14 =>
-                auxiliar(4) := '1';
-                auxiliar(5) := '1';
+                PALABRA(4)  <= '1';
+                PALABRA(5)  <= '1';
                 LED_PALABRA <= "1111";
-            -----------------tercer digito dentro
+            -----------------tercer dígito dentro
             when S16 =>
-                auxiliar(6) := '0';
-                auxiliar(7) := '0';
+                PALABRA(6)  <= '0';
+                PALABRA(7)  <= '0';
                 LED_PALABRA <= "0001";
             when S17 =>
-                auxiliar(6) := '1';
-                auxiliar(7) := '0';
+                PALABRA(6)  <= '1';
+                PALABRA(7)  <= '0';
                 LED_PALABRA <= "0011";
             when S18 =>
-                auxiliar(6) := '0';
-                auxiliar(7) := '1';
+                PALABRA(6)  <= '0';
+                PALABRA(7)  <= '1';
                 LED_PALABRA <= "0111";
             when S19 =>
-                auxiliar(6) := '1';
-                auxiliar(7) := '1';
+                PALABRA(6)  <= '1';
+                PALABRA(7)  <= '1';
                 LED_PALABRA <= "1111";
             -------------------cuarto dígito dentro
             when S21 =>
-                --Se ha terminado de introducir satisfactoriamente la palabra, a través de esta señal se le comunica a los demás componentes
+                --Se ha terminado de introducir satisfactoriamente la palabra, a través de esta señal se le comunica a 
+                --los demás componentes. Está pensado para que sea un pulso
                 INTRODUCIDA <= '1';
                 LED_PALABRA <= "0000";
-            --when others =>
+            when others =>
         end case;
-                PALABRA <= auxiliar;
              end process;
 end behavioral;

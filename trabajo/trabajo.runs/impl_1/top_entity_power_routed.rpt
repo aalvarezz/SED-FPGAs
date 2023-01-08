@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date             : Thu Dec 22 19:17:40 2022
-| Host             : LAPTOP-OBBPV5AQ running 64-bit major release  (build 9200)
+| Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date             : Fri Jan  6 23:47:59 2023
+| Host             : DESKTOP-075L5C7 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_entity_power_routed.rpt -pb top_entity_power_summary_routed.pb -rpx top_entity_power_routed.rpx
 | Design           : top_entity
 | Device           : xc7a100tcsg324-1
@@ -29,20 +29,20 @@ Table of Contents
 1. Summary
 ----------
 
-+--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 19.239 (Junction temp exceeded!) |
-| Design Power Budget (W)  | Unspecified*                     |
-| Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 18.666                           |
-| Device Static (W)        | 0.573                            |
-| Effective TJA (C/W)      | 4.6                              |
-| Max Ambient (C)          | 0.0                              |
-| Junction Temperature (C) | 112.8                            |
-| Confidence Level         | Low                              |
-| Setting File             | ---                              |
-| Simulation Activity File | ---                              |
-| Design Nets Matched      | NA                               |
-+--------------------------+----------------------------------+
++--------------------------+--------------+
+| Total On-Chip Power (W)  | 12.193       |
+| Design Power Budget (W)  | Unspecified* |
+| Power Budget Margin (W)  | NA           |
+| Dynamic (W)              | 11.950       |
+| Device Static (W)        | 0.243        |
+| Effective TJA (C/W)      | 4.6          |
+| Max Ambient (C)          | 29.4         |
+| Junction Temperature (C) | 80.6         |
+| Confidence Level         | Low          |
+| Setting File             | ---          |
+| Simulation Activity File | ---          |
+| Design Nets Matched      | NA           |
++--------------------------+--------------+
 * Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
 
 
@@ -52,15 +52,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.221 |      208 |       --- |             --- |
-|   LUT as Logic |     0.194 |       53 |     63400 |            0.08 |
-|   Register     |     0.022 |      104 |    126800 |            0.08 |
+| Slice Logic    |     0.170 |      199 |       --- |             --- |
+|   LUT as Logic |     0.144 |       44 |     63400 |            0.07 |
+|   Register     |     0.020 |      102 |    126800 |            0.08 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       32 |       --- |             --- |
-| Signals        |     0.409 |      178 |       --- |             --- |
-| I/O            |    18.036 |       28 |       210 |           13.33 |
-| Static Power   |     0.573 |          |           |                 |
-| Total          |    19.239 |          |           |                 |
+|   Others       |     0.000 |       37 |       --- |             --- |
+| Signals        |     0.271 |      147 |       --- |             --- |
+| I/O            |    11.509 |       28 |       210 |           13.33 |
+| Static Power   |     0.243 |          |           |                 |
+| Total          |    12.193 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,16 +70,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     1.051 |       0.663 |      0.388 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.728 |       0.660 |      0.069 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     5.100 |       5.096 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.605 |       0.474 |      0.131 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.453 |       0.421 |      0.033 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     3.252 |       3.248 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.012 |       0.000 |      0.012 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.003 |       0.000 |      0.003 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -137,26 +137,26 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| top_entity               |    18.666 |
-|   B_DF_GEN[0].B_DF       |     0.027 |
-|   B_DF_GEN[1].B_DF       |     0.031 |
-|   B_DF_GEN[2].B_DF       |     0.008 |
-|   B_DF_GEN[3].B_DF       |     0.016 |
-|   B_DF_GEN[4].B_DF       |     0.020 |
-|   B_SYNC_GEN[0].B_SYNC   |     0.007 |
-|   B_SYNC_GEN[1].B_SYNC   |     0.007 |
-|   B_SYNC_GEN[2].B_SYNC   |     0.007 |
-|   B_SYNC_GEN[3].B_SYNC   |     0.008 |
+| top_entity               |    11.950 |
+|   B_DF_GEN[0].B_DF       |     0.011 |
+|   B_DF_GEN[1].B_DF       |     0.017 |
+|   B_DF_GEN[2].B_DF       |     0.012 |
+|   B_DF_GEN[3].B_DF       |     0.012 |
+|   B_DF_GEN[4].B_DF       |     0.009 |
+|   B_SYNC_GEN[0].B_SYNC   |     0.005 |
+|   B_SYNC_GEN[1].B_SYNC   |     0.005 |
+|   B_SYNC_GEN[2].B_SYNC   |     0.006 |
+|   B_SYNC_GEN[3].B_SYNC   |     0.007 |
 |   B_SYNC_GEN[4].B_SYNC   |     0.006 |
-|   COMPONENTE_LUCES       |     0.093 |
-|   COMPROBADOR_DE_PALABRA |     0.020 |
-|   DFB_SW_1               |     0.012 |
-|   DF_SW_1                |     0.036 |
-|   DF_SW_2                |     0.033 |
-|   FORMADOR_DE_PALABRA    |     0.079 |
-|   MAQUINA_ESTADOS        |     0.160 |
-|   SW_SYNC_1              |     0.011 |
-|   SW_SYNC_2              |     0.010 |
+|   COMPONENTE_LUCES       |     0.058 |
+|   COMPROBADOR_DE_PALABRA |     0.012 |
+|   DFB_SW_1               |     0.009 |
+|   DF_SW_1                |     0.003 |
+|   DF_SW_2                |     0.007 |
+|   FORMADOR_DE_PALABRA    |     0.161 |
+|   MAQUINA_ESTADOS        |     0.051 |
+|   SW_SYNC_1              |     0.005 |
+|   SW_SYNC_2              |     0.007 |
 +--------------------------+-----------+
 
 

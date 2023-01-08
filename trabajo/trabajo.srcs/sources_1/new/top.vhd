@@ -47,7 +47,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
         );
     end COMPONENT;
 
-	--Detector de flanco de subida
+	--Detector de flancos
     COMPONENT edgedtctr is
         port (
             RST_N   : in std_logic;
@@ -61,7 +61,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
     
     --Componentes de la contraseña
     
-    --Formador de palabra REVISAR
+    --Formador de palabra
     COMPONENT formador_palabra is
     	port (
     	    RST         : in std_logic;
@@ -74,7 +74,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
         );
     end COMPONENT;
     
-    --Comprobador de palabra REVISAR
+    --Comprobador de palabra
     COMPONENT comprobador_palabra is
     	port (
             RST         : in std_logic;
@@ -87,7 +87,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
         );
     end COMPONENT;
     
-    --Componente de la máquina de estados REVISAR
+    --Componente de la máquina de estados
     COMPONENT fsm is
     	port (
             RST       : in std_logic;
@@ -102,7 +102,7 @@ ARCHITECTURE BEHAVIORAL OF top_entity IS
         );
     end COMPONENT;
     
-    --Luces REVISAR INCLUSO SI ES O NO NECESARIO
+    --Componente para la gestión de los LEDS
     COMPONENT luces is
     	port (
     	   RST          : in std_logic;
@@ -199,7 +199,7 @@ begin
     	RST_N   => RST,
         CLK     => CLK,
     	SYNC_IN => sinc_df_sw1,
-    	SELEC   => '0',
+    	SELEC   => '1',
     	EDGE    => df1_fsm
     );
 
@@ -209,7 +209,7 @@ begin
     	RST_N   => RST,
         CLK     => CLK,
     	SYNC_IN => sinc_df_sw2,
-    	SELEC   => '0',
+    	SELEC   => '1',
     	EDGE    => df2_fsm
     );
 
@@ -219,11 +219,11 @@ begin
     	RST_N   => RST,
         CLK     => CLK,
     	SYNC_IN => sinc_df_sw1,
-    	SELEC   => '1',
+    	SELEC   => '0',
     	EDGE    => dfb_fsm
     );
 
-    
+
     --FORMADOR_PALABRA
     FORMADOR_DE_PALABRA : formador_palabra port map (
         RST         => RST,
@@ -262,7 +262,7 @@ begin
     );
     
     
-    -- LUCES
+    --LUCES
     COMPONENTE_LUCES : luces port map (
         RST       => RST,
         CLK          => CLK,

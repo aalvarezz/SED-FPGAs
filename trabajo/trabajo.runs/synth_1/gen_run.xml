@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1672084252" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/top_entity.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1673045097" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/top_entity.dcp">
   <File Type="PA-TCL" Name="top_entity.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="top_entity_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_entity_reports.tcl"/>
   <File Type="RDS-RDS" Name="top_entity.vds"/>
   <File Type="RDS-UTIL" Name="top_entity_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="top_entity_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="top_entity.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="top_entity_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="top_entity_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/top.vhd">

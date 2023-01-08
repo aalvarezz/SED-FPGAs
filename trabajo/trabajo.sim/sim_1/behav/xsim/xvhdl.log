@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "D:/Vivado/trabajo/trabajo.srcs/sim_1/new/top_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'top_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/Vivado/trabajo/trabajo.srcs/sim_1/new/luces_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'luces_tb'

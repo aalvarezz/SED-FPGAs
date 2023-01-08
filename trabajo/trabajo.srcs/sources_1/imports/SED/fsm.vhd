@@ -54,12 +54,12 @@ begin
     begin
         if RST = '0' then
             current_state <= S0;
-        elsif rising_edge(CLK) then --Avanzar de estado al pulso de reloj
+        elsif rising_edge(CLK) then
             current_state <= next_state;
         end if;
     end process;
  
-    nextstate_decod : process (current_state, SWITCH1, SWITCH2, SWITCH1_N, CORRECT)
+    nextstate_decod : process (current_state, CORRECT, SWITCH1, SWITCH1_N, SWITCH2)
     begin
         next_state <= current_state;
         case current_state is
@@ -89,22 +89,22 @@ begin
     output_decod: process (current_state)
     begin
         case current_state is
-            when S0 =>
+            when S0 => --Registro
                 ENABLE_CP <= '1'; --Enable para habilitar la función de registro
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
                 LED       <= '0';
-            when S1 =>
-                ENABLE_CP <= '0'; --Se desactiva el Enable para habilitar la función de log in (PROVISIONAL)
+            when S1 => --Log in
+                ENABLE_CP <= '0'; --Se desactiva el Enable para habilitar la función de log in
                 ENABLE_FP <= '1'; --Enable para habilitar la función de escritura
                 LED       <= '0';
-            when S2 =>
+            when S2 => --Selección de modo
                 ENABLE_CP <= '0';
-                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
+                ENABLE_FP <= '0';
                 LED       <= '0';
-            when S3 =>
+            when S3 => --Funcionalidad
                 ENABLE_CP <= '0';
-                ENABLE_FP <= '0'; --Enable para deshabilitar la función de escritura
-                LED       <= '1'; --Funcion provisional
+                ENABLE_FP <= '0';
+                LED       <= '1'; --Se activa la señal que indica al componente "luces" que realice la funcionalidad
             when others =>
                 ENABLE_CP <= '0';
                 ENABLE_FP <= '0';
