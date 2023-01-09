@@ -13,6 +13,7 @@ vhdl xil_defaultlib  \
 "../../../../trabajo.srcs/sim_1/new/fsm_tb.vhd" \
 "../../../../trabajo.srcs/sim_1/new/comprobadorpalabra_tb.vhd" \
 "../../../../trabajo.srcs/sim_1/new/formadorpalabra_tb.vhd" \
+"../../../../trabajo.srcs/sim_1/new/luces_tb.vhd" \
 
 # Do not sort compile order
 nosort

@@ -88,31 +88,31 @@ begin
         --REGISTRO
         --Primer dígito	
      	BOTONES(0) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(0) <= '0';
      	wait for 2*k;
      	
      	--Segundo dígito
      	BOTONES(1) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(1) <= '0';
      	wait for 2*k;
      	
      	--Tercer dígito
      	BOTONES(2) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(2) <= '0';
      	wait for 2*k;
      	
      	--Cuarto dígito
      	BOTONES(3) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(3) <= '0';
      	wait for 2*k;
         
      	--Confirmación
      	BOTONES(4) <= '1';      	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(4) <= '0';
      	wait for 2*k;
      	
@@ -129,31 +129,31 @@ begin
      	--LOGIN INCORRECTO
         --Primer dígito	
      	BOTONES(0) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(0) <= '0';
      	wait for 2*k;
      	
      	--Segundo dígito
      	BOTONES(1) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(1) <= '0';
      	wait for 2*k;
      	
      	--Tercer dígito
      	BOTONES(0) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(0) <= '0';
      	wait for 2*k;
      	
      	--Cuarto dígito
      	BOTONES(1) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(1) <= '0';
      	wait for 2*k;
         
      	--Confirmación
      	BOTONES(4) <= '1';      	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(4) <= '0';
      	wait for 2*k;
      	
@@ -166,31 +166,31 @@ begin
         --LOGIN CORRECTO
         --Primer dígito	
      	BOTONES(0) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(0) <= '0';
      	wait for 2*k;
      	
      	--Segundo dígito
      	BOTONES(1) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(1) <= '0';
      	wait for 2*k;
      	
      	--Tercer dígito
      	BOTONES(2) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(2) <= '0';
      	wait for 2*k;
      	
      	--Cuarto dígito
      	BOTONES(3) <= '1';     	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(3) <= '0';
      	wait for 2*k;
         
      	--Confirmación
      	BOTONES(4) <= '1';      	
-     	wait for k;
+     	wait for 10*k;
      	BOTONES(4) <= '0';
      	wait for 2*k;
      	
