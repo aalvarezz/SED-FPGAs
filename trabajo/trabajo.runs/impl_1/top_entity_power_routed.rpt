@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Fri Jan  6 23:47:59 2023
+| Date             : Mon Jan  9 23:26:14 2023
 | Host             : DESKTOP-075L5C7 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_entity_power_routed.rpt -pb top_entity_power_summary_routed.pb -rpx top_entity_power_routed.rpx
 | Design           : top_entity
@@ -29,20 +29,20 @@ Table of Contents
 1. Summary
 ----------
 
-+--------------------------+--------------+
-| Total On-Chip Power (W)  | 12.193       |
-| Design Power Budget (W)  | Unspecified* |
-| Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 11.950       |
-| Device Static (W)        | 0.243        |
-| Effective TJA (C/W)      | 4.6          |
-| Max Ambient (C)          | 29.4         |
-| Junction Temperature (C) | 80.6         |
-| Confidence Level         | Low          |
-| Setting File             | ---          |
-| Simulation Activity File | ---          |
-| Design Nets Matched      | NA           |
-+--------------------------+--------------+
++--------------------------+----------------------------------+
+| Total On-Chip Power (W)  | 14.838 (Junction temp exceeded!) |
+| Design Power Budget (W)  | Unspecified*                     |
+| Power Budget Margin (W)  | NA                               |
+| Dynamic (W)              | 14.505                           |
+| Device Static (W)        | 0.333                            |
+| Effective TJA (C/W)      | 4.6                              |
+| Max Ambient (C)          | 17.3                             |
+| Junction Temperature (C) | 92.7                             |
+| Confidence Level         | Low                              |
+| Setting File             | ---                              |
+| Simulation Activity File | ---                              |
+| Design Nets Matched      | NA                               |
++--------------------------+----------------------------------+
 * Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
 
 
@@ -52,15 +52,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.170 |      199 |       --- |             --- |
-|   LUT as Logic |     0.144 |       44 |     63400 |            0.07 |
-|   Register     |     0.020 |      102 |    126800 |            0.08 |
+| Slice Logic    |     0.177 |      292 |       --- |             --- |
+|   LUT as Logic |     0.132 |       60 |     63400 |            0.09 |
+|   Register     |     0.040 |      179 |    126800 |            0.14 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |       37 |       --- |             --- |
-| Signals        |     0.271 |      147 |       --- |             --- |
-| I/O            |    11.509 |       28 |       210 |           13.33 |
-| Static Power   |     0.243 |          |           |                 |
-| Total          |    12.193 |          |           |                 |
+| Signals        |     0.389 |      241 |       --- |             --- |
+| I/O            |    13.939 |       28 |       210 |           13.33 |
+| Static Power   |     0.333 |          |           |                 |
+| Total          |    14.838 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,16 +70,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.605 |       0.474 |      0.131 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.453 |       0.421 |      0.033 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     3.252 |       3.248 |      0.004 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.800 |       0.598 |      0.202 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.552 |       0.510 |      0.043 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     3.940 |       3.936 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.003 |       0.000 |      0.003 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.006 |       0.000 |      0.006 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -137,26 +137,26 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| top_entity               |    11.950 |
-|   B_DF_GEN[0].B_DF       |     0.011 |
-|   B_DF_GEN[1].B_DF       |     0.017 |
-|   B_DF_GEN[2].B_DF       |     0.012 |
-|   B_DF_GEN[3].B_DF       |     0.012 |
-|   B_DF_GEN[4].B_DF       |     0.009 |
-|   B_SYNC_GEN[0].B_SYNC   |     0.005 |
+| top_entity               |    14.505 |
+|   B_DF_GEN[0].B_DF       |     0.034 |
+|   B_DF_GEN[1].B_DF       |     0.037 |
+|   B_DF_GEN[2].B_DF       |     0.036 |
+|   B_DF_GEN[3].B_DF       |     0.041 |
+|   B_DF_GEN[4].B_DF       |     0.036 |
+|   B_SYNC_GEN[0].B_SYNC   |     0.006 |
 |   B_SYNC_GEN[1].B_SYNC   |     0.005 |
 |   B_SYNC_GEN[2].B_SYNC   |     0.006 |
-|   B_SYNC_GEN[3].B_SYNC   |     0.007 |
+|   B_SYNC_GEN[3].B_SYNC   |     0.006 |
 |   B_SYNC_GEN[4].B_SYNC   |     0.006 |
-|   COMPONENTE_LUCES       |     0.058 |
-|   COMPROBADOR_DE_PALABRA |     0.012 |
-|   DFB_SW_1               |     0.009 |
-|   DF_SW_1                |     0.003 |
-|   DF_SW_2                |     0.007 |
-|   FORMADOR_DE_PALABRA    |     0.161 |
-|   MAQUINA_ESTADOS        |     0.051 |
+|   COMPONENTE_LUCES       |     0.069 |
+|   COMPROBADOR_DE_PALABRA |     0.010 |
+|   DFB_SW_1               |     0.023 |
+|   DF_SW_1                |     0.029 |
+|   DF_SW_2                |     0.039 |
+|   FORMADOR_DE_PALABRA    |     0.084 |
+|   MAQUINA_ESTADOS        |     0.046 |
 |   SW_SYNC_1              |     0.005 |
-|   SW_SYNC_2              |     0.007 |
+|   SW_SYNC_2              |     0.008 |
 +--------------------------+-----------+
 
 
